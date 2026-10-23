@@ -3,27 +3,36 @@ import type { CV } from "../types/cv";
 export const cvData: CV = {
   basics: {
     name: "Soheil Alaei",
-    headline: "Software Engineer | Backend Development",
-    email: "soheilalaei1001@gmail.com",
+    headline: "Software Engineer · Backend Development",
+    email: "SoheilAlaei1001@gmail.com",
     phone: "+98 987 654 3210",
     location: "Karaj, Iran",
+    website: "https://soheildev.ir",
     socials: [
       {
         platform: "github",
         url: "https://github.com/soheilAla",
-        username: "soheilAla",
         label: "GitHub",
       },
       {
         platform: "linkedin",
         url: "https://linkedin.com/in/soheilAla",
-        username: "soheilAla",
         label: "LinkedIn",
       },
       {
-        platform: "website",
-        url: "https://soheildev.ir",
-        label: "Portfolio",
+        platform: "telegram",
+        url: "https://t.me/iS0heil",
+        label: "Telegram",
+      },
+      {
+        platform: "x",
+        url: "https://x.com/iS0heil",
+        label: "X",
+      },
+      {
+        platform: "instagram",
+        url: "https://instagram.com/example",
+        label: "Instagram",
       },
     ],
   },
@@ -45,7 +54,7 @@ export const cvData: CV = {
     },
     {
       company: "Digikala AD",
-      title: "Backend Development Intern",
+      title: "Intern Backend Developer",
       startDate: "Jul 2024",
       endDate: "Jan 2025",
       location: "Tehran, Iran",
@@ -61,7 +70,6 @@ export const cvData: CV = {
       title: "Freelance Backend Developer",
       startDate: "Jan 2024",
       endDate: "Jun 2024",
-      location: "Remote",
       description:
         "Built customized backend solutions, database integrations, and automation tools for client web applications.",
       highlights: [
@@ -130,6 +138,17 @@ export const cvData: CV = {
       issuer: "Harvard University",
       date: "2025",
       url: "https://cs50.harvard.edu/certificates/edd5b56f-908a-4614-9a92-284eb8842603",
+    },
+  ],
+  publications: [
+    {
+      title:
+        "Zero-Knowledge Client-Side Encryption Patterns for Distributed Ephemeral Data Stores",
+      publisher: "International Conference on Software Architecture & Security",
+      date: "2025",
+      url: "https://example.com/publications/zk-client-encryption",
+      description:
+        "Analyzed threat models and latency trade-offs for zero-trust encryption in ephemeral paste systems.",
     },
   ],
   languages: [

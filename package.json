@@ -8,18 +8,19 @@
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",
+    "test": "node --no-warnings --experimental-strip-types tests/config.test.ts",
     "lint": "biome check .",
     "lint:fix": "biome check --write .",
     "format": "biome format --write ."
   },
   "dependencies": {
     "@fontsource-variable/inter": "^5.3.0",
-    "@fontsource-variable/vazirmatn": "^5.3.0",
     "astro": "^7.4.2"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.12",
     "@biomejs/biome": "^2.6.2",
+    "@types/node": "^26.6.5",
     "typescript": "^5.8.0"
   }
 }

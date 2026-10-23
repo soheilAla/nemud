@@ -1,10 +1,14 @@
-export type LinkPlatform = "github" | "linkedin" | "x" | "telegram" | "website";
+export type LinkPlatform =
+  | "github"
+  | "linkedin"
+  | "x"
+  | "telegram"
+  | "instagram";
 
 export interface SocialLink {
   platform: LinkPlatform;
   url: string;
   label?: string;
-  username?: string;
 }
 
 export interface Basics {
@@ -13,6 +17,7 @@ export interface Basics {
   email?: string;
   phone?: string;
   location?: string;
+  website?: string;
   avatarUrl?: string;
   socials?: SocialLink[];
 }
@@ -27,13 +32,9 @@ export interface ExperienceItem {
   highlights?: string[];
 }
 
-export interface EducationItem {
-  institution: string;
-  degree: string;
-  field?: string;
-  startDate: string;
-  endDate?: string;
-  honors?: string[];
+export interface SkillCategory {
+  category: string;
+  items: string[];
 }
 
 export interface ProjectItem {
@@ -46,9 +47,21 @@ export interface ProjectItem {
   highlights?: string[];
 }
 
-export interface SkillCategory {
-  category: string;
-  items: string[];
+export interface PublicationItem {
+  title: string;
+  publisher?: string;
+  date: string;
+  url?: string;
+  description?: string;
+}
+
+export interface EducationItem {
+  institution: string;
+  degree: string;
+  field?: string;
+  startDate: string;
+  endDate?: string;
+  honors?: string[];
 }
 
 export interface CertificationItem {
@@ -72,9 +85,10 @@ export interface CV {
   basics: Basics;
   summary?: string;
   experience?: ExperienceItem[];
-  education?: EducationItem[];
-  projects?: ProjectItem[];
   skills?: SkillCategory[];
+  projects?: ProjectItem[];
+  publications?: PublicationItem[];
+  education?: EducationItem[];
   certifications?: CertificationItem[];
   languages?: LanguageItem[];
 }

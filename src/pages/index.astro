@@ -5,21 +5,95 @@ import Experience from "../components/sections/Experience.astro";
 import Header from "../components/sections/Header.astro";
 import Languages from "../components/sections/Languages.astro";
 import Projects from "../components/sections/Projects.astro";
+import Publications from "../components/sections/Publications.astro";
 import Skills from "../components/sections/Skills.astro";
 import Summary from "../components/sections/Summary.astro";
+import { resolveSiteConfig } from "../config/resolve";
+import { siteConfig } from "../config/site";
 import { cvData } from "../data/cv";
 import CVLayout from "../layouts/CVLayout.astro";
+import type { BodySectionKey } from "../types/site";
+
+const config = resolveSiteConfig(siteConfig);
+
+function isSectionNonEmpty(key: BodySectionKey): boolean {
+  const data = cvData[key];
+  if (!data) return false;
+  if (Array.isArray(data)) return data.length > 0;
+  if (typeof data === "string") return data.trim().length > 0;
+  return true;
+}
+
+const activeSections = config.sectionOrder.filter(
+  (key) => config.sectionVisibility[key] && isSectionNonEmpty(key),
+);
 
 const pageTitle = `${cvData.basics.name} — ${cvData.basics.headline}`;
 ---
 
-<CVLayout title={pageTitle} description={cvData.summary}>
-  <Header basics={cvData.basics} />
-  {cvData.summary && <Summary summary={cvData.summary} />}
-  {cvData.experience && cvData.experience.length > 0 && <Experience items={cvData.experience} />}
-  {cvData.skills && cvData.skills.length > 0 && <Skills skills={cvData.skills} />}
-  {cvData.projects && cvData.projects.length > 0 && <Projects items={cvData.projects} />}
-  {cvData.education && cvData.education.length > 0 && <Education items={cvData.education} />}
-  {cvData.certifications && cvData.certifications.length > 0 && <Certifications items={cvData.certifications} />}
-  {cvData.languages && cvData.languages.length > 0 && <Languages items={cvData.languages} />}
+<CVLayout title={pageTitle} description={cvData.summary} config={config}>
+    <Header basics={cvData.basics} />
+
+    {activeSections.map((sectionKey) => {
+        switch (sectionKey) {
+            case "summary":
+                return cvData.summary ? (
+                    <Summary
+                        summary={cvData.summary}
+                        title={config.sectionTitles.summary}
+                    />
+                ) : null;
+            case "experience":
+                return cvData.experience ? (
+                    <Experience
+                        items={cvData.experience}
+                        title={config.sectionTitles.experience}
+                    />
+                ) : null;
+            case "skills":
+                return cvData.skills ? (
+                    <Skills
+                        skills={cvData.skills}
+                        title={config.sectionTitles.skills}
+                    />
+                ) : null;
+            case "projects":
+                return cvData.projects ? (
+                    <Projects
+                        items={cvData.projects}
+                        title={config.sectionTitles.projects}
+                    />
+                ) : null;
+            case "education":
+                return cvData.education ? (
+                    <Education
+                        items={cvData.education}
+                        title={config.sectionTitles.education}
+                    />
+                ) : null;
+            case "certifications":
+                return cvData.certifications ? (
+                    <Certifications
+                        items={cvData.certifications}
+                        title={config.sectionTitles.certifications}
+                    />
+                ) : null;
+            case "publications":
+                return cvData.publications ? (
+                    <Publications
+                        items={cvData.publications}
+                        title={config.sectionTitles.publications}
+                    />
+                ) : null;
+            case "languages":
+                return cvData.languages ? (
+                    <Languages
+                        items={cvData.languages}
+                        title={config.sectionTitles.languages}
+                    />
+                ) : null;
+            default:
+                return null;
+        }
+    })}
 </CVLayout>

@@ -6,7 +6,7 @@ interface Props {
   title?: string;
 }
 
-const { summary, title = "About" } = Astro.props;
+const { summary, title = "Summary" } = Astro.props;
 
 if (!summary || summary.trim().length === 0) {
   return;
@@ -14,13 +14,13 @@ if (!summary || summary.trim().length === 0) {
 ---
 
 <Section id="summary" title={title}>
-  <p class="cv-summary-text">{summary}</p>
+    <p class="cv-summary-text">{summary}</p>
 </Section>
 
 <style>
-  .cv-summary-text {
-    font-size: var(--font-size-base);
-    color: var(--color-muted);
-    line-height: var(--line-height-base);
-  }
+    .cv-summary-text {
+        font-size: var(--font-size-base);
+        color: var(--color-muted);
+        line-height: var(--line-height-base);
+    }
 </style>

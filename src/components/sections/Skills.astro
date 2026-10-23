@@ -15,36 +15,64 @@ if (!skills || skills.length === 0) {
 ---
 
 <Section id="skills" title={title}>
-  <div class="cv-skills-grid">
-    {skills.map((cat) => (
-      <div class="cv-skill-category">
-        <h3 class="cv-skill-cat-title">{cat.category}</h3>
-        <div class="cv-tags">
-          {cat.items.map((item) => (
-            <span class="cv-tag">{item}</span>
-          ))}
-        </div>
-      </div>
-    ))}
-  </div>
+    <div class="cv-skills-list">
+        {skills.map((cat) => (
+            <div class="cv-skill-row">
+                <h3 class="cv-skill-category-name">{cat.category}:</h3>
+                <p class="cv-skill-items">
+                    {cat.items.map((item, index) => (
+                        <span class="cv-skill-item">
+                            {item}
+                            {index < cat.items.length - 1 && (
+                                <span class="cv-skill-dot" aria-hidden="true">
+                                    {" "}
+                                    ·{" "}
+                                </span>
+                            )}
+                        </span>
+                    ))}
+                </p>
+            </div>
+        ))}
+    </div>
 </Section>
 
 <style>
-  .cv-skills-grid {
-    display: flex;
-    flex-direction: column;
-    row-gap: 0.75rem;
-  }
+    .cv-skills-list {
+        display: flex;
+        flex-direction: column;
+        row-gap: 0.4rem;
+    }
 
-  .cv-skill-category {
-    display: flex;
-    flex-direction: column;
-    row-gap: 0.25rem;
-  }
+    .cv-skill-row {
+        display: flex;
+        align-items: baseline;
+        flex-wrap: wrap;
+        gap: 0.25rem 0.5rem;
+        font-size: var(--font-size-sm);
+        line-height: var(--line-height-tight);
+    }
 
-  .cv-skill-cat-title {
-    font-size: var(--font-size-sm);
-    font-weight: 600;
-    color: var(--color-fg);
-  }
+    .cv-skill-category-name {
+        font-size: var(--font-size-sm);
+        font-weight: 600;
+        color: var(--color-fg);
+        white-space: nowrap;
+        margin: 0;
+    }
+
+    .cv-skill-items {
+        color: var(--color-muted);
+        margin: 0;
+    }
+
+    .cv-skill-item {
+        display: inline;
+    }
+
+    .cv-skill-dot {
+        color: var(--color-faint);
+        user-select: none;
+        padding-inline: 0.15rem;
+    }
 </style>

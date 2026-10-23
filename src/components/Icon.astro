@@ -1,7 +1,12 @@
 ---
 import type { LinkPlatform } from "../types/cv";
 
-export type IconName = LinkPlatform | "email" | "phone" | "location";
+export type IconName =
+  | LinkPlatform
+  | "email"
+  | "phone"
+  | "location"
+  | "website";
 
 interface Props {
   name: IconName;
@@ -58,6 +63,24 @@ const { name, class: className = "cv-icon" } = Astro.props;
     >
         <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" />
         <circle cx="12" cy="10" r="3" />
+    </svg>
+)}
+
+{name === "website" && (
+    <svg
+        class={className}
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+    >
+        <circle cx="12" cy="12" r="10" />
+        <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
+        <path d="M2 12h20" />
     </svg>
 )}
 
@@ -129,7 +152,7 @@ const { name, class: className = "cv-icon" } = Astro.props;
     </svg>
 )}
 
-{name === "website" && (
+{name === "instagram" && (
     <svg
         class={className}
         xmlns="http://www.w3.org/2000/svg"
@@ -141,8 +164,8 @@ const { name, class: className = "cv-icon" } = Astro.props;
         stroke-linejoin="round"
         aria-hidden="true"
     >
-        <circle cx="12" cy="12" r="10" />
-        <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
-        <path d="M2 12h20" />
+        <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+        <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
     </svg>
 )}
