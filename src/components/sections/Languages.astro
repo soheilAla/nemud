@@ -1,0 +1,52 @@
+---
+import type { LanguageItem } from "../../types/cv";
+import Section from "../Section.astro";
+
+interface Props {
+  items?: LanguageItem[];
+  title?: string;
+}
+
+const { items, title = "Languages" } = Astro.props;
+
+if (!items || items.length === 0) {
+  return;
+}
+---
+
+<Section id="languages" title={title}>
+    <div class="cv-languages-list">
+        {items.map((item) => (
+            <div class="cv-language-item">
+                <span class="cv-lang-name">{item.name}</span>
+                {item.proficiency && (
+                    <span class="cv-lang-label">({item.proficiency})</span>
+                )}
+            </div>
+        ))}
+    </div>
+</Section>
+
+<style>
+    .cv-languages-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem 1.5rem;
+    }
+
+    .cv-language-item {
+        display: inline-flex;
+        align-items: baseline;
+        gap: 0.375rem;
+        font-size: var(--font-size-sm);
+    }
+
+    .cv-lang-name {
+        font-weight: 600;
+        color: var(--color-fg);
+    }
+
+    .cv-lang-label {
+        color: var(--color-muted);
+    }
+</style>

@@ -1,0 +1,25 @@
+---
+import Certifications from "../components/sections/Certifications.astro";
+import Education from "../components/sections/Education.astro";
+import Experience from "../components/sections/Experience.astro";
+import Header from "../components/sections/Header.astro";
+import Languages from "../components/sections/Languages.astro";
+import Projects from "../components/sections/Projects.astro";
+import Skills from "../components/sections/Skills.astro";
+import Summary from "../components/sections/Summary.astro";
+import { cvData } from "../data/cv";
+import CVLayout from "../layouts/CVLayout.astro";
+
+const pageTitle = `${cvData.basics.name} — ${cvData.basics.headline}`;
+---
+
+<CVLayout title={pageTitle} description={cvData.summary}>
+  <Header basics={cvData.basics} />
+  {cvData.summary && <Summary summary={cvData.summary} />}
+  {cvData.experience && cvData.experience.length > 0 && <Experience items={cvData.experience} />}
+  {cvData.skills && cvData.skills.length > 0 && <Skills skills={cvData.skills} />}
+  {cvData.projects && cvData.projects.length > 0 && <Projects items={cvData.projects} />}
+  {cvData.education && cvData.education.length > 0 && <Education items={cvData.education} />}
+  {cvData.certifications && cvData.certifications.length > 0 && <Certifications items={cvData.certifications} />}
+  {cvData.languages && cvData.languages.length > 0 && <Languages items={cvData.languages} />}
+</CVLayout>

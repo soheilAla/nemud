@@ -1,0 +1,41 @@
+---
+import type { CertificationItem } from "../../types/cv";
+import Section from "../Section.astro";
+
+interface Props {
+  items?: CertificationItem[];
+  title?: string;
+}
+
+const { items, title = "Certifications" } = Astro.props;
+
+if (!items || items.length === 0) {
+  return;
+}
+---
+
+<Section id="certifications" title={title}>
+  <div class="cv-item-list">
+    {items.map((item) => (
+      <article class="cv-item">
+        <div class="cv-item-header">
+          <div>
+            <h3 class="cv-item-title">
+              {item.url ? (
+                <a href={item.url} target="_blank" rel="noopener noreferrer">
+                  <bdi>{item.name}</bdi>
+                </a>
+              ) : (
+                <bdi>{item.name}</bdi>
+              )}
+            </h3>
+            <div class="cv-item-subtitle">{item.issuer}</div>
+          </div>
+          <span class="cv-item-date">
+            <bdi>{item.date}</bdi>
+          </span>
+        </div>
+      </article>
+    ))}
+  </div>
+</Section>

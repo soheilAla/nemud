@@ -1,0 +1,76 @@
+---
+import type { Basics } from "../../types/cv";
+import Icon from "../Icon.astro";
+
+interface Props {
+  basics: Basics;
+}
+
+const { basics } = Astro.props;
+---
+
+<header class="cv-header">
+  <div class="cv-header-main">
+    <h1 class="cv-name">{basics.name}</h1>
+    <p class="cv-headline">{basics.headline}</p>
+  </div>
+
+  <div class="cv-meta-bar" role="list">
+    {basics.location && (
+      <div class="cv-meta-item" role="listitem">
+        <Icon name="location" />
+        <span><bdi>{basics.location}</bdi></span>
+      </div>
+    )}
+
+    {basics.email && (
+      <div class="cv-meta-item" role="listitem">
+        <Icon name="email" />
+        <a href={`mailto:${basics.email}`}><bdi>{basics.email}</bdi></a>
+      </div>
+    )}
+
+    {basics.phone && (
+      <div class="cv-meta-item" role="listitem">
+        <Icon name="phone" />
+        <a href={`tel:${basics.phone}`}><bdi>{basics.phone}</bdi></a>
+      </div>
+    )}
+
+    {basics.socials?.map((social) => (
+      <div class="cv-meta-item" role="listitem">
+        <Icon name={social.platform} />
+        <a href={social.url} target="_blank" rel="noopener noreferrer">
+          <bdi>{social.username || social.label || social.platform}</bdi>
+        </a>
+      </div>
+    ))}
+  </div>
+</header>
+
+<style>
+  .cv-header {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+    padding-block-end: 1rem;
+    border-block-end: 2px solid var(--color-border);
+  }
+
+  .cv-header-main {
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.25rem;
+  }
+
+  .cv-name {
+    font-size: var(--font-size-2xl);
+    letter-spacing: -0.025em;
+  }
+
+  .cv-headline {
+    font-size: var(--font-size-lg);
+    color: var(--color-muted);
+    font-weight: 500;
+  }
+</style>

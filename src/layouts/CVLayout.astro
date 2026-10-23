@@ -1,0 +1,33 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description?: string;
+  lang?: string;
+  dir?: "ltr" | "rtl";
+}
+
+const {
+  title,
+  description = "Curriculum Vitae",
+  lang = "en",
+  dir = "ltr",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang={lang} dir={dir}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <main class="cv-container">
+      <slot />
+    </main>
+  </body>
+</html>

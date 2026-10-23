@@ -1,0 +1,26 @@
+---
+import Section from "../Section.astro";
+
+interface Props {
+  summary?: string;
+  title?: string;
+}
+
+const { summary, title = "About" } = Astro.props;
+
+if (!summary || summary.trim().length === 0) {
+  return;
+}
+---
+
+<Section id="summary" title={title}>
+  <p class="cv-summary-text">{summary}</p>
+</Section>
+
+<style>
+  .cv-summary-text {
+    font-size: var(--font-size-base);
+    color: var(--color-muted);
+    line-height: var(--line-height-base);
+  }
+</style>
