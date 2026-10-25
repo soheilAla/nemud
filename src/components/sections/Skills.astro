@@ -23,12 +23,7 @@ if (!skills || skills.length === 0) {
                     {cat.items.map((item, index) => (
                         <span class="cv-skill-item">
                             {item}
-                            {index < cat.items.length - 1 && (
-                                <span class="cv-skill-dot" aria-hidden="true">
-                                    {" "}
-                                    ·{" "}
-                                </span>
-                            )}
+                            {index < cat.items.length - 1 && ", "}
                         </span>
                     ))}
                 </p>
@@ -68,11 +63,5 @@ if (!skills || skills.length === 0) {
 
     .cv-skill-item {
         display: inline;
-    }
-
-    .cv-skill-dot {
-        color: var(--color-faint);
-        user-select: none;
-        padding-inline: 0.15rem;
     }
 </style>

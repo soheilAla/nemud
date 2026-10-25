@@ -7,8 +7,8 @@ export const siteConfig: SiteConfig = {
     "experience",
     "skills",
     "projects",
-    "publications",
     "education",
+    "publications",
     "certifications",
     "languages",
   ],
@@ -26,6 +26,5 @@ export const siteConfig: SiteConfig = {
   },
 
   // Optional custom overrides
-  sectionTitles: {
-  },
+  sectionTitles: {},
 };

@@ -17,6 +17,7 @@ export interface Basics {
   email?: string;
   phone?: string;
   location?: string;
+  timeZone?: string;
   website?: string;
   avatarUrl?: string;
   socials?: SocialLink[];
@@ -40,6 +41,8 @@ export interface SkillCategory {
 export interface ProjectItem {
   title: string;
   description: string;
+  startDate: string;
+  endDate?: string;
   projectUrl?: string;
   liveUrl?: string;
   repositoryUrl?: string;

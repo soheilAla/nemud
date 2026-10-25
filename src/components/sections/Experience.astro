@@ -22,13 +22,18 @@ if (!items || items.length === 0) {
                     <div>
                         <h3 class="cv-item-title">{item.title}</h3>
                         <div class="cv-item-subtitle">
-                            {item.company}
-                            {item.location && ` · ${item.location}`}
+                            <span class="cv-item-company">{item.company}</span>
+                            {item.location && (
+                                <span class="cv-item-location">
+                                    {" "}
+                                    - {item.location}
+                                </span>
+                            )}
                         </div>
                     </div>
                     <span class="cv-item-date">
                         <bdi>
-                            {item.startDate} — {item.endDate || "Present"}
+                            {item.startDate} - {item.endDate || "Present"}
                         </bdi>
                     </span>
                 </div>

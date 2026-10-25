@@ -25,8 +25,13 @@ const { basics } = Astro.props;
             {basics.location && (
                 <div class="cv-meta-item" role="listitem">
                     <Icon name="location" />
-                    <span aria-label={`Location: ${basics.location}`}>
-                        <bdi>{basics.location}</bdi>
+                    <span
+                        aria-label={`Location: ${basics.location}${basics.timeZone ? ` (${basics.timeZone})` : ""}`}
+                    >
+                        <bdi>
+                            {basics.location}
+                            {basics.timeZone && ` (${basics.timeZone})`}
+                        </bdi>
                     </span>
                 </div>
             )}
@@ -124,13 +129,13 @@ const { basics } = Astro.props;
 
     .cv-name {
         font-size: var(--font-size-2xl);
-        letter-spacing: -0.025em;
+        letter-spacing: -0.015em;
     }
 
     .cv-headline {
         font-size: var(--font-size-lg);
         color: var(--color-muted);
-        font-weight: 500;
+        font-weight: 400;
     }
 
     .cv-header-meta {

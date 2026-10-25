@@ -83,6 +83,7 @@ test("empty section detection: empty arrays or empty strings are not rendered", 
       {
         title: "Valid Project",
         description: "Working",
+        startDate: "2024",
       },
     ],
   };

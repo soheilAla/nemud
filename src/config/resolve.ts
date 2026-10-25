@@ -26,8 +26,7 @@ export const DEFAULT_SECTION_TITLES: Record<BodySectionKey, string> = {
   languages: "Languages",
 };
 
-
-// Resolves user-provided configuration into a strictly validated, guaranteed-complete configuration with safe defaults.
+// Resolves user-provided configuration into a guaranteed-complete configuration with safe defaults.
 export function resolveSiteConfig(config: SiteConfig): ResolvedSiteConfig {
   // Deduplicate and filter sectionOrder to known sections only
   const rawOrder = config.sectionOrder ?? ALL_BODY_SECTIONS;
@@ -49,13 +48,11 @@ export function resolveSiteConfig(config: SiteConfig): ResolvedSiteConfig {
     }
   }
 
-  // Section visibility: default true for all sections unless explicitly false
   const sectionVisibility = {} as Record<BodySectionKey, boolean>;
   for (const key of ALL_BODY_SECTIONS) {
     sectionVisibility[key] = config.sectionVisibility?.[key] !== false;
   }
 
-  // Section titles with fallback: user override -> default title
   const sectionTitles = {} as Record<BodySectionKey, string>;
   for (const key of ALL_BODY_SECTIONS) {
     sectionTitles[key] =

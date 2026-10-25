@@ -3,11 +3,12 @@ import type { CV } from "../types/cv";
 export const cvData: CV = {
   basics: {
     name: "Soheil Alaei",
-    headline: "Software Engineer · Backend Development",
+    headline: "Software Engineer - Backend Development",
     email: "SoheilAlaei1001@gmail.com",
     phone: "+98 987 654 3210",
     location: "Karaj, Iran",
-    website: "https://soheildev.ir",
+    timeZone: "UTC+3:30",
+    website: "https://SoheilAla.ir",
     socials: [
       {
         platform: "github",
@@ -37,18 +38,16 @@ export const cvData: CV = {
     ],
   },
   summary:
-    "Junior Software Engineer focused on secure API design, clean architecture, and maintainable software. Emphasizes problem-solving, code quality, and building reliable systems, with a long-term interest in AI engineering.",
+    "Junior Software Engineer with over 1 year of experience in Python backend development, focused on secure API design, database integration, and maintainable software. Also interested in AI engineering.",
   experience: [
     {
       company: "Snapp Food",
       title: "Junior Backend Developer",
       startDate: "Jan 2025",
-      endDate: "Present",
       location: "Tehran, Iran",
       description:
         "Developed backend APIs and database integrations for web applications, with a focus on security, maintainability, and clean architecture.",
       highlights: [
-        "Implemented REST APIs with request validation, structured error handling, and consistent response schemas.",
         "Designed database models and managed schema changes using SQLAlchemy and Alembic.",
       ],
     },
@@ -62,34 +61,40 @@ export const cvData: CV = {
         "Contributed to backend development tasks and database integration for internal web applications.",
       highlights: [
         "Built API endpoints and integrated database operations for core application features.",
-        "Used Git for version control and Docker Compose to run local development services.",
       ],
     },
     {
-      company: "Freelance",
+      company: "Self-employed",
       title: "Freelance Backend Developer",
       startDate: "Jan 2024",
       endDate: "Jun 2024",
       description:
         "Built customized backend solutions, database integrations, and automation tools for client web applications.",
-      highlights: [
-        "Designed RESTful APIs using FastAPI and PostgreSQL with automated request validation.",
-        "Configured Dockerized deployment environments on Linux servers for reliable hosting.",
-      ],
     },
   ],
   skills: [
     {
-      category: "Backend Development",
-      items: ["Python", "FastAPI", "PostgreSQL", "SQLAlchemy"],
+      category: "Languages & Runtimes",
+      items: ["Python", "SQL", "TypeScript"],
     },
     {
-      category: "Frontend Development",
-      items: ["TypeScript", "Vue.js", "Tailwind CSS"],
+      category: "Backend",
+      items: [
+        "FastAPI",
+        "PostgreSQL",
+        "SQLAlchemy",
+        "Alembic",
+        "Pydantic",
+        "REST APIs",
+      ],
     },
     {
       category: "Tools & Infrastructure",
-      items: ["Docker", "Linux", "Git", "GitHub Actions"],
+      items: ["Docker", "Linux", "Git", "GitHub Actions", "CI/CD"],
+    },
+    {
+      category: "Frontend",
+      items: ["Vue.js", "Tailwind CSS"],
     },
   ],
   projects: [
@@ -97,6 +102,8 @@ export const cvData: CV = {
       title: "Zero Drop",
       description:
         "Privacy-focused paste service with client-side encryption for text sharing.",
+      startDate: "2024",
+      endDate: "2025",
       liveUrl: "https://zerodrop.dev",
       repositoryUrl: "https://github.com/soheilAla/zero-drop",
       technologies: [
@@ -105,21 +112,26 @@ export const cvData: CV = {
         "PostgreSQL",
         "SQLAlchemy",
         "Alembic",
-        "Vue.js",
-        "TypeScript",
         "Docker",
+        "TypeScript",
+        "Vue.js",
+        "Tailwind CSS",
       ],
       highlights: [
-        "Designed client-side encryption so plaintext content and decryption keys are not sent to the server.",
-        "Implemented expiring content, access limits, and burn-after-read behavior.",
+        "Implemented browser-side AES-256-GCM encryption, keeping plaintext content and decryption keys out of server requests.",
+        "Added password-based encryption using PBKDF2, alongside API rate limiting and security headers.",
       ],
     },
     {
       title: "Secure Lens",
       description:
         "Command-line security configuration scanner with Jev powered risk assessment.",
+      startDate: "2024",
       repositoryUrl: "https://github.com/soheilAla/secure-lens",
-      technologies: ["Python", "Pydantic", "Github Actions", "Jev SDK"],
+      technologies: ["Python", "Pydantic", "GitHub Actions", "Jev SDK"],
+      highlights: [
+        "Built modular static checks for exposed secrets, insecure environment settings, Dockerfile risks, and Git configuration issues.",
+      ],
     },
   ],
   education: [
@@ -127,8 +139,7 @@ export const cvData: CV = {
       institution: "Iran University of Science and Technology",
       degree: "B.Sc.",
       field: "Computer Science",
-      startDate: "2026",
-      endDate: "Present",
+      startDate: "2025",
       honors: ["Outstanding Performance in Computer Science Coursework (2026)"],
     },
   ],

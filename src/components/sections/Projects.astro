@@ -67,6 +67,12 @@ if (!items || items.length === 0) {
                                 )}
                             </div>
                         </div>
+
+                        <span class="cv-item-date">
+                            <bdi>
+                                {item.startDate} - {item.endDate || "Present"}
+                            </bdi>
+                        </span>
                     </div>
 
                     <p class="cv-item-description">{item.description}</p>
@@ -87,15 +93,8 @@ if (!items || items.length === 0) {
                             {item.technologies.map((tech, index) => (
                                 <span class="cv-tech-item">
                                     {tech}
-                                    {index < item.technologies!.length - 1 && (
-                                        <span
-                                            class="cv-tech-dot"
-                                            aria-hidden="true"
-                                        >
-                                            {" "}
-                                            ·{" "}
-                                        </span>
-                                    )}
+                                    {index < item.technologies!.length - 1 &&
+                                        ", "}
                                 </span>
                             ))}
                         </p>
@@ -153,7 +152,7 @@ if (!items || items.length === 0) {
         display: flex;
         align-items: baseline;
         flex-wrap: wrap;
-        gap: 0.2rem 0.4rem;
+        gap: 0.2rem 0.3rem;
         font-size: var(--font-size-xs);
         line-height: var(--line-height-tight);
         margin-block-start: 0.15rem;
@@ -161,14 +160,7 @@ if (!items || items.length === 0) {
 
     .cv-tech-item {
         display: inline;
-        font-weight: 600;
+        font-weight: 500;
         color: var(--color-fg);
-    }
-
-    .cv-tech-dot {
-        color: var(--color-faint);
-        font-weight: 400;
-        user-select: none;
-        padding-inline: 0.15rem;
     }
 </style>
