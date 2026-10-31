@@ -26,9 +26,7 @@ export const DEFAULT_SECTION_TITLES: Record<BodySectionKey, string> = {
   languages: "Languages",
 };
 
-// Resolves user-provided configuration into a guaranteed-complete configuration with safe defaults.
 export function resolveSiteConfig(config: SiteConfig): ResolvedSiteConfig {
-  // Deduplicate and filter sectionOrder to known sections only
   const rawOrder = config.sectionOrder ?? ALL_BODY_SECTIONS;
   const seen = new Set<BodySectionKey>();
   const sectionOrder: BodySectionKey[] = [];
@@ -40,7 +38,6 @@ export function resolveSiteConfig(config: SiteConfig): ResolvedSiteConfig {
     }
   }
 
-  // Append any missing sections in default order so all declared keys remain addressable
   for (const key of ALL_BODY_SECTIONS) {
     if (!seen.has(key)) {
       seen.add(key);
@@ -59,7 +56,10 @@ export function resolveSiteConfig(config: SiteConfig): ResolvedSiteConfig {
       config.sectionTitles?.[key] ?? DEFAULT_SECTION_TITLES[key] ?? key;
   }
 
+  const showPortrait = config.showPortrait !== false;
+
   return {
+    showPortrait,
     sectionOrder,
     sectionVisibility,
     sectionTitles,

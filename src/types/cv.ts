@@ -14,12 +14,13 @@ export interface SocialLink {
 export interface Basics {
   name: string;
   headline: string;
-  email?: string;
-  phone?: string;
-  location?: string;
+  email: string;
+  phone: string;
+  location: string;
   timeZone?: string;
   website?: string;
   avatarUrl?: string;
+  portrait?: string;
   socials?: SocialLink[];
 }
 

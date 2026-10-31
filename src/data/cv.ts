@@ -9,6 +9,7 @@ export const cvData: CV = {
     location: "Karaj, Iran",
     timeZone: "UTC+3:30",
     website: "https://SoheilAla.ir",
+    portrait: "/portrait.jpg",
     socials: [
       {
         platform: "github",

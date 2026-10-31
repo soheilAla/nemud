@@ -4,121 +4,146 @@ import Icon from "../Icon.astro";
 
 interface Props {
   basics: Basics;
+  showPortrait?: boolean;
 }
 
-const { basics } = Astro.props;
+const { basics, showPortrait = true } = Astro.props;
+const portraitSrc = showPortrait
+  ? basics.portrait || basics.avatarUrl
+  : undefined;
 ---
 
 <header class="cv-header">
-    <div class="cv-header-main">
-        <h1 class="cv-name">{basics.name}</h1>
-        <p class="cv-headline">{basics.headline}</p>
-    </div>
+    <div class="cv-header-content">
+        <div class="cv-header-main">
+            <h1 class="cv-name">{basics.name}</h1>
+            <p class="cv-headline">{basics.headline}</p>
+        </div>
 
-    <div class="cv-header-meta">
-        <!-- Direct Contact Information -->
-        <div
-            class="cv-meta-row cv-contact-row"
-            role="list"
-            aria-label="Contact Information"
-        >
-            {basics.location && (
-                <div class="cv-meta-item" role="listitem">
-                    <Icon name="location" />
-                    <span
-                        aria-label={`Location: ${basics.location}${basics.timeZone ? ` (${basics.timeZone})` : ""}`}
-                    >
-                        <bdi>
-                            {basics.location}
-                            {basics.timeZone && ` (${basics.timeZone})`}
-                        </bdi>
-                    </span>
-                </div>
-            )}
+        <div class="cv-header-meta">
+            <div
+                class="cv-meta-row cv-contact-row"
+                role="list"
+                aria-label="Contact Information"
+            >
+                {basics.location && (
+                    <div class="cv-meta-item" role="listitem">
+                        <Icon name="location" />
+                        <span
+                            aria-label={`Location: ${basics.location}${basics.timeZone ? ` (${basics.timeZone})` : ""}`}
+                        >
+                            <bdi>
+                                {basics.location}
+                                {basics.timeZone && ` (${basics.timeZone})`}
+                            </bdi>
+                        </span>
+                    </div>
+                )}
 
-            {basics.phone && (
-                <div class="cv-meta-item" role="listitem">
-                    <Icon name="phone" />
-                    <a
-                        href={`tel:${basics.phone}`}
-                        aria-label={`Phone: ${basics.phone}`}
-                    >
-                        <bdi>{basics.phone}</bdi>
-                    </a>
-                </div>
-            )}
+                {basics.phone && (
+                    <div class="cv-meta-item" role="listitem">
+                        <Icon name="phone" />
+                        <a
+                            href={`tel:${basics.phone}`}
+                            aria-label={`Phone: ${basics.phone}`}
+                        >
+                            <bdi>{basics.phone}</bdi>
+                        </a>
+                    </div>
+                )}
 
-            {basics.email && (
-                <div class="cv-meta-item" role="listitem">
-                    <Icon name="email" />
-                    <a
-                        href={`mailto:${basics.email}`}
-                        aria-label={`Email: ${basics.email}`}
-                    >
-                        <bdi>{basics.email}</bdi>
-                    </a>
-                </div>
-            )}
+                {basics.email && (
+                    <div class="cv-meta-item" role="listitem">
+                        <Icon name="email" />
+                        <a
+                            href={`mailto:${basics.email}`}
+                            aria-label={`Email: ${basics.email}`}
+                        >
+                            <bdi>{basics.email}</bdi>
+                        </a>
+                    </div>
+                )}
+            </div>
 
-            {basics.website && (
-                <div class="cv-meta-item" role="listitem">
-                    <Icon name="website" />
-                    <a
-                        href={basics.website}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label={`Website: ${basics.website}`}
-                    >
-                        <bdi>{basics.website.replace(/^https?:\/\//, "")}</bdi>
-                    </a>
+            {(basics.website ||
+                (basics.socials && basics.socials.length > 0)) && (
+                <div
+                    class="cv-meta-row cv-socials-row"
+                    role="list"
+                    aria-label="Online Profiles"
+                >
+                    {basics.website && (
+                        <div class="cv-meta-item" role="listitem">
+                            <Icon name="website" />
+                            <a
+                                href={basics.website}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label={`Website: ${basics.website}`}
+                            >
+                                <bdi>
+                                    {basics.website.replace(/^https?:\/\//, "")}
+                                </bdi>
+                            </a>
+                        </div>
+                    )}
+
+                    {basics.socials?.map((social) => {
+                        const appName =
+                            social.label ||
+                            (social.platform === "github"
+                                ? "GitHub"
+                                : social.platform === "linkedin"
+                                  ? "LinkedIn"
+                                  : social.platform === "x"
+                                    ? "X"
+                                    : social.platform.charAt(0).toUpperCase() +
+                                      social.platform.slice(1));
+
+                        return (
+                            <div class="cv-meta-item" role="listitem">
+                                <Icon name={social.platform} />
+                                <a
+                                    href={social.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    aria-label={`${appName} Profile`}
+                                >
+                                    <bdi>{appName}</bdi>
+                                </a>
+                            </div>
+                        );
+                    })}
                 </div>
             )}
         </div>
-
-        <!-- Social Media Profiles -->
-        {basics.socials && basics.socials.length > 0 && (
-            <div
-                class="cv-meta-row cv-socials-row"
-                role="list"
-                aria-label="Social Media"
-            >
-                {basics.socials.map((social) => {
-                    const appName =
-                        social.label ||
-                        (social.platform === "github"
-                            ? "GitHub"
-                            : social.platform === "linkedin"
-                              ? "LinkedIn"
-                              : social.platform === "x"
-                                ? "X"
-                                : social.platform.charAt(0).toUpperCase() +
-                                  social.platform.slice(1));
-
-                    return (
-                        <div class="cv-meta-item" role="listitem">
-                            <Icon name={social.platform} />
-                            <a
-                                href={social.url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                aria-label={`${appName} Profile`}
-                            >
-                                <bdi>{appName}</bdi>
-                            </a>
-                        </div>
-                    );
-                })}
-            </div>
-        )}
     </div>
+
+    {portraitSrc && (
+        <div class="cv-header-portrait-wrapper">
+            <img
+                src={portraitSrc}
+                alt={`Portrait of ${basics.name}`}
+                class="cv-header-portrait"
+            />
+        </div>
+    )}
 </header>
 
 <style>
     .cv-header {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        align-items: stretch;
+        column-gap: 1.5rem;
+        padding-block-end: 0.25rem;
+    }
+
+    .cv-header-content {
         display: flex;
         flex-direction: column;
         row-gap: 0.75rem;
-        padding-block-end: 0.25rem;
+        min-width: 0;
     }
 
     .cv-header-main {
@@ -157,5 +182,40 @@ const { basics } = Astro.props;
         display: inline-flex;
         align-items: center;
         gap: 0.375rem;
+    }
+
+    /* <img> is absolutely positioned so intrinsic size never affects layout. */
+    .cv-header-portrait-wrapper {
+        position: relative;
+        aspect-ratio: 4 / 5;
+        height: 100%;
+        max-height: 9.5rem;
+        max-width: 7.6rem;
+    }
+
+    .cv-header-portrait {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center top;
+        border-radius: 0.375rem;
+        border: 1px solid var(--color-border);
+        background-color: var(--color-surface);
+        display: block;
+    }
+
+    @media (max-width: 640px) {
+        .cv-header-portrait-wrapper {
+            max-height: 8rem;
+            max-width: 6.4rem;
+        }
+    }
+
+    @media print {
+        .cv-header-portrait {
+            border-radius: 1.5mm;
+        }
     }
 </style>

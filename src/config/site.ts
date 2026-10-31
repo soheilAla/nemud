@@ -1,19 +1,19 @@
 import type { SiteConfig } from "../types/site.ts";
 
 export const siteConfig: SiteConfig = {
-  // Reorder keys to change the CV reading structure
+  showPortrait: true,
+
   sectionOrder: [
     "summary",
     "experience",
     "skills",
     "projects",
     "education",
-    "publications",
     "certifications",
+    "publications",
     "languages",
   ],
 
-  // Set any section to false to hide it even if data exists
   sectionVisibility: {
     summary: true,
     experience: true,
@@ -25,6 +25,5 @@ export const siteConfig: SiteConfig = {
     languages: true,
   },
 
-  // Optional custom overrides
   sectionTitles: {},
 };

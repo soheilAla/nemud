@@ -9,6 +9,7 @@ test("resolveSiteConfig: applies safe defaults for minimal config", () => {
 
   const resolved = resolveSiteConfig(minimalConfig);
 
+  assert.equal(resolved.showPortrait, true);
   assert.equal(resolved.sectionTitles.summary, "Summary");
   assert.equal(resolved.sectionTitles.publications, "Research & Publications");
   assert.equal(resolved.sectionVisibility.summary, true);
@@ -29,12 +30,10 @@ test("resolveSiteConfig: deduplicates sectionOrder and filters out invalid keys"
 
   const resolved = resolveSiteConfig(duplicateConfig);
 
-  // "experience" occurs only once at the beginning
   assert.equal(resolved.sectionOrder[0], "experience");
   assert.equal(resolved.sectionOrder[1], "skills");
   assert.ok(!resolved.sectionOrder.includes("invalid-key" as BodySectionKey));
 
-  // The rest of the valid sections are appended without duplicates
   const uniqueKeys = new Set(resolved.sectionOrder);
   assert.equal(uniqueKeys.size, resolved.sectionOrder.length);
 });
@@ -70,11 +69,23 @@ test("resolveSiteConfig: respects explicit sectionVisibility: false", () => {
   assert.equal(resolved.sectionVisibility.publications, true);
 });
 
+test("resolveSiteConfig: respects explicit showPortrait: false", () => {
+  const configWithoutPortrait: SiteConfig = {
+    showPortrait: false,
+  };
+
+  const resolved = resolveSiteConfig(configWithoutPortrait);
+  assert.equal(resolved.showPortrait, false);
+});
+
 test("empty section detection: empty arrays or empty strings are not rendered", () => {
   const sampleCV: CV = {
     basics: {
       name: "Test Candidate",
       headline: "Tester",
+      email: "test@example.com",
+      phone: "+1234567890",
+      location: "Remote",
     },
     summary: "   ",
     experience: [],

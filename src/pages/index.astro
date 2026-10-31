@@ -32,7 +32,7 @@ const pageTitle = `${cvData.basics.name} - ${cvData.basics.headline}`;
 ---
 
 <CVLayout title={pageTitle} description={cvData.summary} config={config}>
-    <Header basics={cvData.basics} />
+    <Header basics={cvData.basics} showPortrait={config.showPortrait} />
 
     {activeSections.map((sectionKey) => {
         switch (sectionKey) {
