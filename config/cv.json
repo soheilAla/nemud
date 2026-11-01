@@ -33,7 +33,7 @@
     ]
   },
 
-  "summary": "Junior Python Backend Developer focused on building secure and maintainable backend services using FastAPI. Experienced in developing REST APIs, database-driven applications, and applying software engineering principles to build reliable systems.",
+  "summary": "Junior **Python Backend Developer** focused on building secure and maintainable backend services using **FastAPI**. Experienced in developing REST APIs, database-driven applications, and applying software engineering principles to build reliable systems.",
 
   "experience": [
     {
@@ -42,11 +42,11 @@
       "startDate": "Jan 2025",
       "location": "Tehran, Iran",
       "workMode": "Hybrid",
-      "description": "Order-management team of 6 engineers; services handle about 40k requests per minute.",
+      "description": "Order-management team of 6 engineers; services handle about **40k requests per minute**.",
       "highlights": [
-        "Reduced p95 latency of the vendor menu endpoint from 480 ms to 190 ms by adding composite PostgreSQL indexes and replacing N+1 SQLAlchemy queries with joined loads.",
-        "Eliminated 95% of malformed-payload errors reaching the database layer by adding Pydantic validation and uniform error responses to 14 endpoints.",
-        "Shortened release time from 40 to 12 minutes by automating tests and Docker image builds in a GitHub Actions CI/CD pipeline."
+        "Reduced p95 latency of the vendor menu endpoint from **480 ms to 190 ms** by adding composite PostgreSQL indexes and replacing N+1 SQLAlchemy queries with joined loads.",
+        "Eliminated **95% of malformed-payload errors** reaching the database layer by adding Pydantic validation and uniform error responses to 14 endpoints.",
+        "Shortened release time from **40 to 12 minutes** by automating tests and Docker image builds in a GitHub Actions CI/CD pipeline."
       ]
     },
     {
@@ -57,8 +57,8 @@
       "location": "Tehran, Iran",
       "workMode": "On-site",
       "highlights": [
-        "Built 8 REST endpoints with FastAPI and PostgreSQL for the internal campaign dashboard, used daily by 30 ad-operations staff.",
-        "Cut weekly campaign-report preparation from 2 hours to 5 minutes by replacing a manual spreadsheet export with a scheduled SQL aggregation job."
+        "Built 8 REST endpoints with FastAPI and PostgreSQL for the internal campaign dashboard, used daily by **30 ad-operations staff**.",
+        "Cut weekly campaign-report preparation from **2 hours to 5 minutes** by replacing a manual spreadsheet export with a scheduled SQL aggregation job."
       ]
     },
     {
@@ -67,8 +67,8 @@
       "startDate": "Jan 2024",
       "endDate": "Jun 2024",
       "highlights": [
-        "Delivered an appointment-booking API for a dental clinic in 6 weeks, replacing phone scheduling for about 200 monthly appointments.",
-        "Deployed the service with Docker on a Linux server and handled schema changes with Alembic migrations."
+        "Delivered an appointment-booking API for a dental clinic in **6 weeks**, replacing phone scheduling for about **200 monthly appointments**.",
+        "Deployed the service with **Docker** on a Linux server and handled schema changes with **Alembic** migrations."
       ]
     }
   ],
@@ -112,9 +112,9 @@
         "Tailwind CSS"
       ],
       "highlights": [
-        "Encrypted pastes in the browser with AES-256-GCM, so plaintext and decryption keys never appear in server requests.",
-        "Added password-based encryption with PBKDF2 key derivation.",
-        "Hardened the API with rate limiting and security headers."
+        "Encrypted pastes in the browser with **AES-256-GCM**, so plaintext and decryption keys never appear in server requests.",
+        "Added password-based encryption with **PBKDF2** key derivation.",
+        "Hardened the API with **rate limiting** and security headers."
       ]
     },
     {
@@ -124,8 +124,8 @@
       "repositoryUrl": "https://github.com/soheilAla/secure-lens",
       "technologies": ["Python", "Pydantic", "Jev SDK", "GitHub Actions"],
       "highlights": [
-        "Built modular static checks that detect exposed secrets, insecure environment settings, Dockerfile risks, and Git configuration issues.",
-        "Integrated the Jev decision model to assess exploitability and adjust finding severity beyond rule-based detection."
+        "Built modular static checks that detect **exposed secrets**, insecure environment settings, Dockerfile risks, and Git configuration issues.",
+        "Integrated the **Jev decision model** to assess exploitability and adjust finding severity beyond rule-based detection."
       ]
     }
   ],

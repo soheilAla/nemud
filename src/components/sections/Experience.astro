@@ -1,5 +1,6 @@
 ---
 import type { ExperienceItem } from "../../types/cv";
+import FormattedText from "../FormattedText.astro";
 import Section from "../Section.astro";
 
 interface Props {
@@ -45,13 +46,17 @@ if (!items || items.length === 0) {
                 </div>
 
                 {item.description && (
-                    <p class="cv-item-description">{item.description}</p>
+                    <p class="cv-item-description">
+                        <FormattedText text={item.description} />
+                    </p>
                 )}
 
                 {item.highlights && item.highlights.length > 0 && (
                     <ul>
                         {item.highlights.map((highlight) => (
-                            <li>{highlight}</li>
+                            <li>
+                                <FormattedText text={highlight} />
+                            </li>
                         ))}
                     </ul>
                 )}

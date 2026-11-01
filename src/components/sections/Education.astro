@@ -1,5 +1,6 @@
 ---
 import type { EducationItem } from "../../types/cv";
+import FormattedText from "../FormattedText.astro";
 import Section from "../Section.astro";
 
 interface Props {
@@ -36,7 +37,9 @@ if (!items || items.length === 0) {
                 {item.honors && item.honors.length > 0 && (
                     <ul>
                         {item.honors.map((honor) => (
-                            <li>{honor}</li>
+                            <li>
+                                <FormattedText text={honor} />
+                            </li>
                         ))}
                     </ul>
                 )}

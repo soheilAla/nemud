@@ -1,5 +1,6 @@
 ---
 import type { Basics } from "../../types/cv";
+import FormattedText from "../FormattedText.astro";
 import Icon from "../Icon.astro";
 
 interface Props {
@@ -30,7 +31,9 @@ function formatSocialUrl(url: string): string {
     <div class="cv-header-content">
         <div class="cv-header-main">
             <h1 class="cv-name">{basics.name}</h1>
-            <p class="cv-headline">{basics.headline}</p>
+            <p class="cv-headline">
+                <FormattedText text={basics.headline} />
+            </p>
         </div>
 
         <div class="cv-header-meta">

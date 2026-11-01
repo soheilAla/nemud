@@ -1,5 +1,6 @@
 ---
 import type { PublicationItem } from "../../types/cv";
+import FormattedText from "../FormattedText.astro";
 import Section from "../Section.astro";
 
 interface Props {
@@ -43,7 +44,9 @@ if (!items || items.length === 0) {
                 </div>
 
                 {item.description && (
-                    <p class="cv-item-description">{item.description}</p>
+                    <p class="cv-item-description">
+                        <FormattedText text={item.description} />
+                    </p>
                 )}
             </article>
         ))}
