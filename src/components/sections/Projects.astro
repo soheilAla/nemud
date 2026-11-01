@@ -7,7 +7,7 @@ interface Props {
   title?: string;
 }
 
-const { items, title = "Projects" } = Astro.props;
+const { items, title = "Selected Projects" } = Astro.props;
 
 if (!items || items.length === 0) {
   return;

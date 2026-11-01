@@ -120,6 +120,18 @@ test("1. A valid minimal CV passes; a full valid CV passes with zero warnings", 
   assert.equal(minResult.cv.basics.name, "Alex Smith");
   assert.equal(minResult.warnings.length, 0);
 
+  // Phone is optional: passes when omitted
+  const noPhoneCV = {
+    basics: {
+      name: "Alex Smith",
+      headline: "Full-Stack Developer",
+      email: "alex@example.com",
+      location: "Chicago, IL",
+    },
+  };
+  const noPhoneResult = parseCv(noPhoneCV);
+  assert.equal(noPhoneResult.cv.basics.phone, undefined);
+
   const fullResult = parseCv(fullValidCV);
   assert.equal(fullResult.cv.basics.name, "Jordan Lee");
   assert.equal(fullResult.warnings.length, 0);
@@ -160,6 +172,74 @@ test("3. Missing required field and wrong type are rejected; invalid proficiency
         languages: [{ name: "German", proficiency: "Fluent" }],
       }),
     /expected one of Native \| Bilingual \| Professional Working \| Limited Working \| Basic/,
+  );
+
+  // workMode: On-site, Hybrid, Remote are valid; other values rejected
+  for (const mode of ["On-site", "Hybrid", "Remote"] as const) {
+    assert.doesNotThrow(() =>
+      parseCv({
+        ...minimalValidCV,
+        experience: [
+          { company: "Co", title: "Dev", startDate: "2024", workMode: mode },
+        ],
+      }),
+    );
+  }
+
+  assert.throws(
+    () =>
+      parseCv({
+        ...minimalValidCV,
+        experience: [
+          {
+            company: "Co",
+            title: "Dev",
+            startDate: "2024",
+            workMode: "InvalidMode",
+          },
+        ],
+      }),
+    /expected one of On-site \| Hybrid \| Remote/,
+  );
+
+  // gitlab and whatsapp are supported platforms
+  assert.doesNotThrow(() =>
+    parseCv({
+      ...minimalValidCV,
+      basics: {
+        ...minimalValidCV.basics,
+        socials: [
+          { platform: "gitlab", url: "https://gitlab.com/user" },
+          { platform: "whatsapp", url: "https://wa.me/12345" },
+        ],
+      },
+    }),
+  );
+
+  // x and instagram are rejected
+  assert.throws(
+    () =>
+      parseCv({
+        ...minimalValidCV,
+        basics: {
+          ...minimalValidCV.basics,
+          socials: [{ platform: "x", url: "https://x.com/user" }],
+        },
+      }),
+    /expected one of github \| gitlab \| linkedin \| telegram \| whatsapp/,
+  );
+  assert.throws(
+    () =>
+      parseCv({
+        ...minimalValidCV,
+        basics: {
+          ...minimalValidCV.basics,
+          socials: [
+            { platform: "instagram", url: "https://instagram.com/user" },
+          ],
+        },
+      }),
+    /expected one of github \| gitlab \| linkedin \| telegram \| whatsapp/,
   );
 });
 

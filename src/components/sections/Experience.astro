@@ -26,7 +26,13 @@ if (!items || items.length === 0) {
                             {item.location && (
                                 <span class="cv-item-location">
                                     {" "}
-                                    - {item.location}
+                                    | {item.location}
+                                </span>
+                            )}
+                            {item.workMode && (
+                                <span class="cv-item-workmode">
+                                    {" "}
+                                    | {item.workMode}
                                 </span>
                             )}
                         </div>

@@ -46,10 +46,10 @@ export const dateString = z.string().superRefine((val, ctx) => {
 
 export const LINK_PLATFORMS = [
   "github",
+  "gitlab",
   "linkedin",
-  "x",
   "telegram",
-  "instagram",
+  "whatsapp",
 ] as const;
 
 export const linkPlatformSchema = z.enum(LINK_PLATFORMS, {
@@ -71,7 +71,7 @@ export const basicsSchema = z
     name: nonEmptyString,
     headline: nonEmptyString,
     email: z.email(),
-    phone: nonEmptyString,
+    phone: nonEmptyString.optional(),
     location: nonEmptyString,
     timeZone: z.string().optional(),
     website: httpUrlSchema.optional(),
@@ -81,6 +81,12 @@ export const basicsSchema = z
   .strict();
 export type Basics = z.infer<typeof basicsSchema>;
 
+export const WORK_MODES = ["On-site", "Hybrid", "Remote"] as const;
+export const workModeSchema = z.enum(WORK_MODES, {
+  message: `expected one of ${WORK_MODES.join(" | ")}`,
+});
+export type WorkMode = z.infer<typeof workModeSchema>;
+
 export const experienceItemSchema = z
   .object({
     company: nonEmptyString,
@@ -88,6 +94,7 @@ export const experienceItemSchema = z
     startDate: dateString,
     endDate: dateString.optional(),
     location: z.string().optional(),
+    workMode: workModeSchema.optional(),
     description: z.string().optional(),
     highlights: z.array(nonEmptyString).optional(),
   })

@@ -7,7 +7,7 @@ interface Props {
   title?: string;
 }
 
-const { items, title = "Research & Publications" } = Astro.props;
+const { items, title = "Publications" } = Astro.props;
 
 if (!items || items.length === 0) {
   return;

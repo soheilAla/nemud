@@ -7,7 +7,7 @@
     "phone": "+98 912 000 0000",
     "location": "Karaj, Iran",
     "timeZone": "UTC+03:30",
-    "website": "https://SoheilAla.ir",
+    "website": "https://soheilAla.ir",
     "portrait": "/portrait.jpg",
     "socials": [
       {
@@ -23,13 +23,17 @@
         "url": "https://t.me/iS0heil"
       },
       {
-        "platform": "x",
-        "url": "https://x.com/iS0heil"
+        "platform": "whatsapp",
+        "url": "https://wa.me/iS0heil"
+      },
+      {
+        "platform": "gitlab",
+        "url": "https://gitlab.com/soheilAla"
       }
     ]
   },
 
-  "summary": "Python backend developer with 1.5 years of experience building FastAPI and PostgreSQL services for high-traffic platforms. Built and open-sourced Zero Drop, a paste service that encrypts text in the browser with AES-256-GCM. Seeking a backend role focused on secure, maintainable APIs.",
+  "summary": "Junior Python Backend Developer focused on building secure and maintainable backend services using FastAPI. Experienced in developing REST APIs, database-driven applications, and applying software engineering principles to build reliable systems.",
 
   "experience": [
     {
@@ -37,6 +41,7 @@
       "title": "Junior Backend Developer",
       "startDate": "Jan 2025",
       "location": "Tehran, Iran",
+      "workMode": "Hybrid",
       "description": "Order-management team of 6 engineers; services handle about 40k requests per minute.",
       "highlights": [
         "Reduced p95 latency of the vendor menu endpoint from 480 ms to 190 ms by adding composite PostgreSQL indexes and replacing N+1 SQLAlchemy queries with joined loads.",
@@ -50,6 +55,7 @@
       "startDate": "Jul 2024",
       "endDate": "Jan 2025",
       "location": "Tehran, Iran",
+      "workMode": "On-site",
       "highlights": [
         "Built 8 REST endpoints with FastAPI and PostgreSQL for the internal campaign dashboard, used daily by 30 ad-operations staff.",
         "Cut weekly campaign-report preparation from 2 hours to 5 minutes by replacing a manual spreadsheet export with a scheduled SQL aggregation job."
@@ -69,27 +75,20 @@
 
   "skills": [
     {
-      "category": "Languages & Runtimes",
-      "items": ["Python", "SQL", "TypeScript"]
+      "category": "Languages",
+      "items": ["Python", "SQL"]
     },
     {
-      "category": "Backend",
-      "items": [
-        "FastAPI",
-        "PostgreSQL",
-        "SQLAlchemy",
-        "Alembic",
-        "Pydantic",
-        "REST API Design"
-      ]
+      "category": "Backend Development",
+      "items": ["FastAPI", "Pydantic", "REST API Design"]
+    },
+    {
+      "category": "Databases & ORMs",
+      "items": ["PostgreSQL", "MySQL", "Redis", "SQLAlchemy", "Alembic"]
     },
     {
       "category": "Tools & Infrastructure",
       "items": ["Docker", "Linux", "Git", "GitHub Actions", "CI/CD"]
-    },
-    {
-      "category": "Frontend",
-      "items": ["Vue.js", "Tailwind CSS"]
     }
   ],
 
@@ -152,7 +151,15 @@
     }
   ],
 
-  "publications": [],
+  "publications": [
+    {
+      "title": "Design Patterns for Scalable REST APIs with FastAPI and PostgreSQL",
+      "publisher": "Tech Journal of Software Engineering",
+      "date": "May 2024",
+      "url": "https://example.com/publications/fastapi-design-patterns",
+      "description": "Explored clean architecture, connection pooling, and async database session management patterns in production Python services."
+    }
+  ],
 
   "languages": [
     {

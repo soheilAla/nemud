@@ -41,7 +41,7 @@
             "properties": {
               "platform": {
                 "type": "string",
-                "enum": ["github", "linkedin", "x", "telegram", "instagram"]
+                "enum": ["github", "gitlab", "linkedin", "telegram", "whatsapp"]
               },
               "url": {
                 "type": "string"
@@ -55,7 +55,7 @@
           }
         }
       },
-      "required": ["name", "headline", "email", "phone", "location"],
+      "required": ["name", "headline", "email", "location"],
       "additionalProperties": false
     },
     "summary": {
@@ -80,6 +80,10 @@
           },
           "location": {
             "type": "string"
+          },
+          "workMode": {
+            "type": "string",
+            "enum": ["On-site", "Hybrid", "Remote"]
           },
           "description": {
             "type": "string"

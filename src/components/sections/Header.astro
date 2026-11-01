@@ -9,6 +9,21 @@ interface Props {
 
 const { basics, showPortrait = true } = Astro.props;
 const portraitSrc = showPortrait ? basics.portrait : undefined;
+
+function formatSocialUrl(url: string): string {
+  let display = url.replace(/^https?:\/\//i, "").replace(/^www\./i, "");
+
+  display = display
+    .replace(/^github\.com/i, "GitHub.com")
+    .replace(/^gitlab\.com/i, "GitLab.com")
+    .replace(/^linkedin\.com/i, "LinkedIn.com")
+    .replace(/^telegram\.me/i, "Telegram.me")
+    .replace(/^t\.me/i, "Telegram.me")
+    .replace(/^whatsapp\.com/i, "WhatsApp.com")
+    .replace(/^wa\.me/i, "WhatsApp.com");
+
+  return display.replace(/\/$/, "");
+}
 ---
 
 <header class="cv-header">
@@ -87,16 +102,8 @@ const portraitSrc = showPortrait ? basics.portrait : undefined;
                     )}
 
                     {basics.socials?.map((social) => {
-                        const appName =
-                            social.label ||
-                            (social.platform === "github"
-                                ? "GitHub"
-                                : social.platform === "linkedin"
-                                  ? "LinkedIn"
-                                  : social.platform === "x"
-                                    ? "X"
-                                    : social.platform.charAt(0).toUpperCase() +
-                                      social.platform.slice(1));
+                        const displayUrl =
+                            social.label || formatSocialUrl(social.url);
 
                         return (
                             <div class="cv-meta-item" role="listitem">
@@ -105,9 +112,9 @@ const portraitSrc = showPortrait ? basics.portrait : undefined;
                                     href={social.url}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    aria-label={`${appName} Profile`}
+                                    aria-label={displayUrl}
                                 >
-                                    <bdi>{appName}</bdi>
+                                    <bdi>{displayUrl}</bdi>
                                 </a>
                             </div>
                         );
