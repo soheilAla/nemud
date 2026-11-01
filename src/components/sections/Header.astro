@@ -8,9 +8,7 @@ interface Props {
 }
 
 const { basics, showPortrait = true } = Astro.props;
-const portraitSrc = showPortrait
-  ? basics.portrait || basics.avatarUrl
-  : undefined;
+const portraitSrc = showPortrait ? basics.portrait : undefined;
 ---
 
 <header class="cv-header">

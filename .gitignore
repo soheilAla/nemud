@@ -15,5 +15,13 @@ pnpm-debug.log*
 .env
 .env.production
 
-# macOS
+# Editor directories and files
+.vscode/
+.zed/
+.idea/
 .DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

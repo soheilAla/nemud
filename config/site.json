@@ -1,0 +1,25 @@
+{
+  "showPortrait": true,
+
+  "sectionOrder": [
+    "summary",
+    "experience",
+    "skills",
+    "projects",
+    "education",
+    "certifications",
+    "publications",
+    "languages"
+  ],
+
+  "sectionVisibility": {
+    "summary": true,
+    "experience": true,
+    "skills": true,
+    "projects": true,
+    "education": true,
+    "certifications": true,
+    "publications": true,
+    "languages": true
+  }
+}

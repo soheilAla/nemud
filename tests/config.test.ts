@@ -1,84 +1,100 @@
 import assert from "node:assert/strict";
+import fs from "node:fs";
+import os from "node:os";
+import path from "node:path";
 import { test } from "node:test";
-import { resolveSiteConfig } from "../src/config/resolve.ts";
+import {
+  ALL_BODY_SECTIONS,
+  loadSiteConfig,
+  resolveSiteConfig,
+  validateSiteConfig,
+} from "../src/config/resolve.ts";
 import type { CV } from "../src/types/cv.ts";
 import type { BodySectionKey, SiteConfig } from "../src/types/site.ts";
 
 test("resolveSiteConfig: applies safe defaults for minimal config", () => {
-  const minimalConfig: SiteConfig = {};
-
-  const resolved = resolveSiteConfig(minimalConfig);
+  const resolved = resolveSiteConfig({});
 
   assert.equal(resolved.showPortrait, true);
-  assert.equal(resolved.sectionTitles.summary, "Summary");
-  assert.equal(resolved.sectionTitles.publications, "Research & Publications");
-  assert.equal(resolved.sectionVisibility.summary, true);
-  assert.equal(resolved.sectionVisibility.publications, true);
-  assert.ok(resolved.sectionOrder.length >= 8);
+  assert.equal(resolved.sectionOrder.length, ALL_BODY_SECTIONS.length);
+  for (const key of ALL_BODY_SECTIONS) {
+    assert.equal(resolved.sectionVisibility[key], true);
+  }
 });
 
-test("resolveSiteConfig: deduplicates sectionOrder and filters out invalid keys", () => {
-  const duplicateConfig = {
-    sectionOrder: [
-      "experience",
-      "experience",
-      "invalid-key",
-      "skills",
-      "experience",
-    ],
+test("resolveSiteConfig: deduplicates sectionOrder and appends missing predefined sections", () => {
+  const customConfig = {
+    sectionOrder: ["experience", "experience", "invalid-key", "skills"],
   } as unknown as SiteConfig;
 
-  const resolved = resolveSiteConfig(duplicateConfig);
+  const resolved = resolveSiteConfig(customConfig);
 
   assert.equal(resolved.sectionOrder[0], "experience");
   assert.equal(resolved.sectionOrder[1], "skills");
   assert.ok(!resolved.sectionOrder.includes("invalid-key" as BodySectionKey));
 
   const uniqueKeys = new Set(resolved.sectionOrder);
-  assert.equal(uniqueKeys.size, resolved.sectionOrder.length);
+  assert.equal(uniqueKeys.size, ALL_BODY_SECTIONS.length);
 });
 
-test("resolveSiteConfig: respects user section title overrides", () => {
-  const configWithOverride: SiteConfig = {
-    sectionTitles: {
-      summary: "Executive Profile",
-      publications: "Selected Papers",
-    },
-  };
-
-  const resolved = resolveSiteConfig(configWithOverride);
-
-  assert.equal(resolved.sectionTitles.summary, "Executive Profile");
-  assert.equal(resolved.sectionTitles.publications, "Selected Papers");
-  assert.equal(resolved.sectionTitles.experience, "Experience");
-});
-
-test("resolveSiteConfig: respects explicit sectionVisibility: false", () => {
-  const configWithHidden: SiteConfig = {
+test("resolveSiteConfig: respects explicit sectionVisibility: false and showPortrait: false", () => {
+  const resolved = resolveSiteConfig({
+    showPortrait: false,
     sectionVisibility: {
       certifications: false,
       summary: false,
     },
-  };
+  });
 
-  const resolved = resolveSiteConfig(configWithHidden);
-
+  assert.equal(resolved.showPortrait, false);
   assert.equal(resolved.sectionVisibility.certifications, false);
   assert.equal(resolved.sectionVisibility.summary, false);
   assert.equal(resolved.sectionVisibility.experience, true);
-  assert.equal(resolved.sectionVisibility.publications, true);
 });
 
-test("resolveSiteConfig: respects explicit showPortrait: false", () => {
-  const configWithoutPortrait: SiteConfig = {
-    showPortrait: false,
-  };
+test("validateSiteConfig: strictly rejects custom sections and unknown keys", () => {
+  // Reject removed sectionTitles or unknown properties
+  assert.throws(
+    () => validateSiteConfig({ sectionTitles: { summary: "About" } }),
+    /Unrecognized configuration key "sectionTitles"/,
+  );
 
-  const resolved = resolveSiteConfig(configWithoutPortrait);
-  assert.equal(resolved.showPortrait, false);
+  // Reject invalid section names in sectionOrder
+  assert.throws(
+    () => validateSiteConfig({ sectionOrder: ["customSection"] }),
+    /contains invalid section "customSection"/,
+  );
+
+  // Reject invalid section names in sectionVisibility
+  assert.throws(
+    () => validateSiteConfig({ sectionVisibility: { hobbies: true } }),
+    /contains invalid section "hobbies"/,
+  );
+
+  // Reject wrong types
+  assert.throws(
+    () => validateSiteConfig({ showPortrait: "yes" }),
+    /"showPortrait" must be a boolean/,
+  );
 });
 
-test("empty section detection: empty arrays or empty strings are not rendered", () => {
+test("loadSiteConfig: safely handles missing optional file and invalid JSON", () => {
+  const missingPath = path.join(os.tmpdir(), "missing-site-test.json");
+  assert.deepEqual(loadSiteConfig(missingPath), {});
+
+  const badJsonPath = path.join(os.tmpdir(), "bad-site-test.json");
+  fs.writeFileSync(badJsonPath, "{ invalid json }");
+  try {
+    assert.throws(
+      () => loadSiteConfig(badJsonPath),
+      /Failed to parse site configuration/,
+    );
+  } finally {
+    fs.unlinkSync(badJsonPath);
+  }
+});
+
+test("empty section detection: empty arrays or whitespace strings are not rendered", () => {
   const sampleCV: CV = {
     basics: {
       name: "Test Candidate",

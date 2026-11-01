@@ -1,0 +1,167 @@
+{
+  "$schema": "./cv.schema.json",
+  "basics": {
+    "name": "Soheil Alaei",
+    "headline": "Backend Developer - Python",
+    "email": "SoheilAlaei1001@gmail.com",
+    "phone": "+98 912 000 0000",
+    "location": "Karaj, Iran",
+    "timeZone": "UTC+03:30",
+    "website": "https://SoheilAla.ir",
+    "portrait": "/portrait.jpg",
+    "socials": [
+      {
+        "platform": "github",
+        "url": "https://github.com/soheilAla"
+      },
+      {
+        "platform": "linkedin",
+        "url": "https://linkedin.com/in/soheilAla"
+      },
+      {
+        "platform": "telegram",
+        "url": "https://t.me/iS0heil"
+      },
+      {
+        "platform": "x",
+        "url": "https://x.com/iS0heil"
+      }
+    ]
+  },
+
+  "summary": "Python backend developer with 1.5 years of experience building FastAPI and PostgreSQL services for high-traffic platforms. Built and open-sourced Zero Drop, a paste service that encrypts text in the browser with AES-256-GCM. Seeking a backend role focused on secure, maintainable APIs.",
+
+  "experience": [
+    {
+      "company": "Snapp Food",
+      "title": "Junior Backend Developer",
+      "startDate": "Jan 2025",
+      "location": "Tehran, Iran",
+      "description": "Order-management team of 6 engineers; services handle about 40k requests per minute.",
+      "highlights": [
+        "Reduced p95 latency of the vendor menu endpoint from 480 ms to 190 ms by adding composite PostgreSQL indexes and replacing N+1 SQLAlchemy queries with joined loads.",
+        "Eliminated 95% of malformed-payload errors reaching the database layer by adding Pydantic validation and uniform error responses to 14 endpoints.",
+        "Shortened release time from 40 to 12 minutes by automating tests and Docker image builds in a GitHub Actions CI/CD pipeline."
+      ]
+    },
+    {
+      "company": "Digikala AD",
+      "title": "Backend Developer Intern",
+      "startDate": "Jul 2024",
+      "endDate": "Jan 2025",
+      "location": "Tehran, Iran",
+      "highlights": [
+        "Built 8 REST endpoints with FastAPI and PostgreSQL for the internal campaign dashboard, used daily by 30 ad-operations staff.",
+        "Cut weekly campaign-report preparation from 2 hours to 5 minutes by replacing a manual spreadsheet export with a scheduled SQL aggregation job."
+      ]
+    },
+    {
+      "company": "Self-employed",
+      "title": "Freelance Backend Developer",
+      "startDate": "Jan 2024",
+      "endDate": "Jun 2024",
+      "highlights": [
+        "Delivered an appointment-booking API for a dental clinic in 6 weeks, replacing phone scheduling for about 200 monthly appointments.",
+        "Deployed the service with Docker on a Linux server and handled schema changes with Alembic migrations."
+      ]
+    }
+  ],
+
+  "skills": [
+    {
+      "category": "Languages & Runtimes",
+      "items": ["Python", "SQL", "TypeScript"]
+    },
+    {
+      "category": "Backend",
+      "items": [
+        "FastAPI",
+        "PostgreSQL",
+        "SQLAlchemy",
+        "Alembic",
+        "Pydantic",
+        "REST API Design"
+      ]
+    },
+    {
+      "category": "Tools & Infrastructure",
+      "items": ["Docker", "Linux", "Git", "GitHub Actions", "CI/CD"]
+    },
+    {
+      "category": "Frontend",
+      "items": ["Vue.js", "Tailwind CSS"]
+    }
+  ],
+
+  "projects": [
+    {
+      "title": "Zero Drop",
+      "description": "Open-source paste service where text is encrypted in the browser before upload.",
+      "startDate": "Sep 2026",
+      "endDate": "Oct 2026",
+      "repositoryUrl": "https://github.com/soheilAla/zero-drop",
+      "liveUrl": "https://zero-drop.soheilala.ir",
+      "technologies": [
+        "Python",
+        "FastAPI",
+        "PostgreSQL",
+        "SQLAlchemy",
+        "Alembic",
+        "Docker",
+        "TypeScript",
+        "Vue.js",
+        "Tailwind CSS"
+      ],
+      "highlights": [
+        "Encrypted pastes in the browser with AES-256-GCM, so plaintext and decryption keys never appear in server requests.",
+        "Added password-based encryption with PBKDF2 key derivation.",
+        "Hardened the API with rate limiting and security headers."
+      ]
+    },
+    {
+      "title": "Secure Lens",
+      "description": "Command-line scanner that audits project security configuration and ranks findings by risk.",
+      "startDate": "Sep 2026",
+      "repositoryUrl": "https://github.com/soheilAla/secure-lens",
+      "technologies": ["Python", "Pydantic", "Jev SDK", "GitHub Actions"],
+      "highlights": [
+        "Built modular static checks that detect exposed secrets, insecure environment settings, Dockerfile risks, and Git configuration issues.",
+        "Integrated the Jev decision model to assess exploitability and adjust finding severity beyond rule-based detection."
+      ]
+    }
+  ],
+
+  "education": [
+    {
+      "institution": "Iran University of Science and Technology",
+      "degree": "B.Sc.",
+      "field": "Computer Science",
+      "startDate": "2025",
+      "honors": [
+        "Outstanding Performance in Computer Science Coursework (2026)"
+      ]
+    }
+  ],
+
+  "certifications": [
+    {
+      "name": "CS50x Puzzle Day",
+      "issuer": "Harvard University",
+      "date": "2025",
+      "url": "https://cs50.harvard.edu/certificates/edd5b56f-908a-4614-9a92-284eb8842603"
+    }
+  ],
+
+  "publications": [],
+
+  "languages": [
+    {
+      "name": "Persian",
+      "proficiency": "Native"
+    },
+    {
+      "name": "English",
+      "proficiency": "Professional Working"
+    }
+  ]
+}
