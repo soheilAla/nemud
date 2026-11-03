@@ -108,6 +108,7 @@
             "type": "string"
           },
           "items": {
+            "minItems": 1,
             "type": "array",
             "items": {
               "type": "string"

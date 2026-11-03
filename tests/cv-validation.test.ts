@@ -378,6 +378,16 @@ test("6. Whitespace-only required strings are rejected", () => {
       }),
     /skills\[0\]\.items\[1\]/,
   );
+
+  // Skill category must not have an empty items array
+  assert.throws(
+    () =>
+      parseCv({
+        ...minimalValidCV,
+        skills: [{ category: "Tools", items: [] }],
+      }),
+    /skills\[0\]\.items/,
+  );
 });
 
 test("7. Invalid URL is rejected; /portrait.webp and https://example.org/a.webp are accepted for portrait", () => {

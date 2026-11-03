@@ -117,7 +117,9 @@ export type ExperienceItem = z.infer<typeof experienceItemSchema>;
 export const skillCategorySchema = z
   .object({
     category: nonEmptyString,
-    items: z.array(nonEmptyString),
+    items: z
+      .array(nonEmptyString)
+      .nonempty("Skill category must contain at least one item"),
   })
   .strict();
 export type SkillCategory = z.infer<typeof skillCategorySchema>;

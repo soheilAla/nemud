@@ -31,42 +31,34 @@ const pageTitle = `${cvData.basics.name} - ${cvData.basics.headline}`;
 ---
 
 <CVLayout title={pageTitle} description={cvData.summary} config={config}>
-    <Header basics={cvData.basics} showPortrait={config.showPortrait} />
+  <Header basics={cvData.basics} showPortrait={config.showPortrait} />
 
-    {activeSections.map((sectionKey) => {
-        switch (sectionKey) {
-            case "summary":
-                return cvData.summary ? (
-                    <Summary summary={cvData.summary} />
-                ) : null;
-            case "experience":
-                return cvData.experience ? (
-                    <Experience items={cvData.experience} />
-                ) : null;
-            case "skills":
-                return cvData.skills ? <Skills skills={cvData.skills} /> : null;
-            case "projects":
-                return cvData.projects ? (
-                    <Projects items={cvData.projects} />
-                ) : null;
-            case "education":
-                return cvData.education ? (
-                    <Education items={cvData.education} />
-                ) : null;
-            case "certifications":
-                return cvData.certifications ? (
-                    <Certifications items={cvData.certifications} />
-                ) : null;
-            case "publications":
-                return cvData.publications ? (
-                    <Publications items={cvData.publications} />
-                ) : null;
-            case "languages":
-                return cvData.languages ? (
-                    <Languages items={cvData.languages} />
-                ) : null;
-            default:
-                return null;
-        }
-    })}
+  {activeSections.map((sectionKey) => {
+    switch (sectionKey) {
+      case "summary":
+        return cvData.summary ? <Summary summary={cvData.summary} /> : null;
+      case "experience":
+        return cvData.experience ? (
+          <Experience items={cvData.experience} />
+        ) : null;
+      case "skills":
+        return cvData.skills ? <Skills skills={cvData.skills} /> : null;
+      case "projects":
+        return cvData.projects ? <Projects items={cvData.projects} /> : null;
+      case "education":
+        return cvData.education ? <Education items={cvData.education} /> : null;
+      case "certifications":
+        return cvData.certifications ? (
+          <Certifications items={cvData.certifications} />
+        ) : null;
+      case "publications":
+        return cvData.publications ? (
+          <Publications items={cvData.publications} />
+        ) : null;
+      case "languages":
+        return cvData.languages ? <Languages items={cvData.languages} /> : null;
+      default:
+        return null;
+    }
+  })}
 </CVLayout>

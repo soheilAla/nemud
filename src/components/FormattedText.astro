@@ -9,6 +9,6 @@ const { text = "" } = Astro.props;
 const tokens = parseBoldText(text);
 ---
 
-{tokens.map((token) => (
-  token.bold ? <strong>{token.text}</strong> : token.text
-))}
+{tokens.map((token) =>
+  token.bold ? <strong>{token.text}</strong> : token.text,
+)}

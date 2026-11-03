@@ -1,7 +1,3 @@
-@import "@fontsource/inter/400.css";
-@import "@fontsource/inter/500.css";
-@import "@fontsource/inter/600.css";
-
 :root {
   --font-sans:
     "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -232,6 +228,7 @@ li {
 
 /* Print and PDF rules */
 @page {
+  size: A4;
   margin: 12mm 15mm;
 }
 

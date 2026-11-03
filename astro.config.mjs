@@ -52,5 +52,7 @@ function nemudPortraitIntegration() {
 }
 
 export default defineConfig({
+  base: process.env.ASTRO_BASE || process.env.BASE_URL || undefined,
+  site: process.env.ASTRO_SITE || process.env.SITE_URL || undefined,
   integrations: [nemudPortraitIntegration()],
 });

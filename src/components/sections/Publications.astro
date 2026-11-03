@@ -16,39 +16,35 @@ if (!items || items.length === 0) {
 ---
 
 <Section id="publications" title={title}>
-    <div class="cv-item-list">
-        {items.map((item) => (
-            <article class="cv-item">
-                <div class="cv-item-header">
-                    <div>
-                        <h3 class="cv-item-title">
-                            {item.url ? (
-                                <a
-                                    href={item.url}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                >
-                                    <bdi>{item.title}</bdi>
-                                </a>
-                            ) : (
-                                <bdi>{item.title}</bdi>
-                            )}
-                        </h3>
-                        {item.publisher && (
-                            <div class="cv-item-subtitle">{item.publisher}</div>
-                        )}
-                    </div>
-                    <span class="cv-item-date">
-                        <bdi>{item.date}</bdi>
-                    </span>
-                </div>
+  <div class="cv-item-list">
+    {items.map((item) => (
+      <article class="cv-item">
+        <div class="cv-item-header">
+          <div>
+            <h3 class="cv-item-title">
+              {item.url ? (
+                <a href={item.url} target="_blank" rel="noopener noreferrer">
+                  <bdi>{item.title}</bdi>
+                </a>
+              ) : (
+                <bdi>{item.title}</bdi>
+              )}
+            </h3>
+            {item.publisher && (
+              <div class="cv-item-subtitle">{item.publisher}</div>
+            )}
+          </div>
+          <span class="cv-item-date">
+            <bdi>{item.date}</bdi>
+          </span>
+        </div>
 
-                {item.description && (
-                    <p class="cv-item-description">
-                        <FormattedText text={item.description} />
-                    </p>
-                )}
-            </article>
-        ))}
-    </div>
+        {item.description && (
+          <p class="cv-item-description">
+            <FormattedText text={item.description} />
+          </p>
+        )}
+      </article>
+    ))}
+  </div>
 </Section>

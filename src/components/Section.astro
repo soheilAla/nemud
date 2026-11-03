@@ -8,7 +8,11 @@ interface Props {
 const { id, title, class: className } = Astro.props;
 ---
 
-<section id={id} aria-labelledby={`${id}-heading`} class:list={['cv-section', className]}>
+<section
+  id={id}
+  aria-labelledby={`${id}-heading`}
+  class:list={["cv-section", className]}
+>
   <h2 id={`${id}-heading`} class="cv-section-title">{title}</h2>
   <slot />
 </section>

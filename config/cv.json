@@ -2,9 +2,9 @@
   "$schema": "./cv.schema.json",
   "basics": {
     "name": "Soheil Alaei",
-    "headline": "Backend Developer - Python",
+    "headline": "Python Backend Developer",
     "email": "SoheilAlaei1001@gmail.com",
-    "phone": "+98 912 000 0000",
+    "phone": "+989120000000",
     "location": "Karaj, Iran",
     "timeZone": "UTC+03:30",
     "website": "https://soheilAla.ir",
@@ -24,7 +24,7 @@
       },
       {
         "platform": "whatsapp",
-        "url": "https://wa.me/iS0heil"
+        "url": "https://whatsapp.com/iS0heil"
       },
       {
         "platform": "gitlab",
