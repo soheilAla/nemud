@@ -11,6 +11,7 @@ const minimalValidCV = {
     email: "alex@example.com",
     phone: "+1 555 123 4567",
     location: "Chicago, IL",
+    timeZone: "UTC-06:00",
   },
 };
 
@@ -92,6 +93,12 @@ const fullValidCV = {
       field: "Computer Science",
       startDate: "2016",
       endDate: "2020",
+      topGrades: [
+        {
+          label: "Algorithms",
+          grade: "19.5/20",
+        },
+      ],
       honors: ["Summa Cum Laude"],
     },
   ],
@@ -106,7 +113,7 @@ const fullValidCV = {
   languages: [
     {
       name: "English",
-      proficiency: "Native",
+      proficiency: "Native or Bilingual",
     },
     {
       name: "Spanish",
@@ -120,17 +127,29 @@ test("1. A valid minimal CV passes; a full valid CV passes with zero warnings", 
   assert.equal(minResult.cv.basics.name, "Alex Smith");
   assert.equal(minResult.warnings.length, 0);
 
-  // Phone is optional: passes when omitted
+  // Phone is mandatory: throws when omitted
   const noPhoneCV = {
     basics: {
       name: "Alex Smith",
       headline: "Full-Stack Developer",
       email: "alex@example.com",
       location: "Chicago, IL",
+      timeZone: "UTC-06:00",
     },
   };
-  const noPhoneResult = parseCv(noPhoneCV);
-  assert.equal(noPhoneResult.cv.basics.phone, undefined);
+  assert.throws(() => parseCv(noPhoneCV), /basics\.phone/);
+
+  // TimeZone is mandatory: throws when omitted
+  const noTimeZoneCV = {
+    basics: {
+      name: "Alex Smith",
+      headline: "Full-Stack Developer",
+      email: "alex@example.com",
+      phone: "+1 555 123 4567",
+      location: "Chicago, IL",
+    },
+  };
+  assert.throws(() => parseCv(noTimeZoneCV), /basics\.timeZone/);
 
   const fullResult = parseCv(fullValidCV);
   assert.equal(fullResult.cv.basics.name, "Jordan Lee");
@@ -171,7 +190,7 @@ test("3. Missing required field and wrong type are rejected; invalid proficiency
         ...minimalValidCV,
         languages: [{ name: "German", proficiency: "Fluent" }],
       }),
-    /expected one of Native \| Bilingual \| Professional Working \| Limited Working \| Basic/,
+    /expected one of Elementary \| Limited Working \| Professional Working \| Full Professional \| Native or Bilingual/,
   );
 
   // workMode: On-site, Hybrid, Remote are valid; other values rejected

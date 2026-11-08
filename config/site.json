@@ -1,6 +1,5 @@
 {
   "sectionOrder": [
-    "summary",
     "experience",
     "skills",
     "projects",
@@ -11,9 +10,7 @@
   ],
 
   "sectionVisibility": {
-    "summary": true,
     "experience": true,
-    "skills": true,
     "projects": true,
     "education": true,
     "certifications": true,

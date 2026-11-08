@@ -12,7 +12,8 @@
           "type": "string"
         },
         "headline": {
-          "type": "string"
+          "type": "string",
+          "description": "Professional title or target role."
         },
         "email": {
           "type": "string",
@@ -23,16 +24,20 @@
           "type": "string"
         },
         "location": {
-          "type": "string"
+          "type": "string",
+          "description": "City and country, or preferred location format."
         },
         "timeZone": {
-          "type": "string"
+          "type": "string",
+          "description": "Time zone (e.g. UTC+3:30)."
         },
         "website": {
-          "type": "string"
+          "type": "string",
+          "description": "A valid HTTP or HTTPS URL."
         },
         "portrait": {
-          "type": "string"
+          "type": "string",
+          "description": "Image URL or root-relative path (e.g. \"/portrait.jpg\")."
         },
         "socials": {
           "type": "array",
@@ -44,7 +49,8 @@
                 "enum": ["github", "gitlab", "linkedin", "telegram", "whatsapp"]
               },
               "url": {
-                "type": "string"
+                "type": "string",
+                "description": "A valid HTTP or HTTPS URL."
               },
               "label": {
                 "type": "string"
@@ -55,10 +61,18 @@
           }
         }
       },
-      "required": ["name", "headline", "email", "location"],
+      "required": [
+        "name",
+        "headline",
+        "email",
+        "phone",
+        "location",
+        "timeZone"
+      ],
       "additionalProperties": false
     },
     "summary": {
+      "description": "A concise professional summary.",
       "type": "string"
     },
     "experience": {
@@ -70,12 +84,15 @@
             "type": "string"
           },
           "title": {
-            "type": "string"
+            "type": "string",
+            "description": "Job title or position."
           },
           "startDate": {
-            "type": "string"
+            "type": "string",
+            "description": "Use \"Mon YYYY\" (e.g. \"Jan 2025\") or \"YYYY\"."
           },
           "endDate": {
+            "description": "Leave empty for a current position.",
             "type": "string"
           },
           "location": {
@@ -86,9 +103,11 @@
             "enum": ["On-site", "Hybrid", "Remote"]
           },
           "description": {
+            "description": "Brief overview of your responsibilities.",
             "type": "string"
           },
           "highlights": {
+            "description": "Key achievements and measurable results.",
             "type": "array",
             "items": {
               "type": "string"
@@ -105,14 +124,16 @@
         "type": "object",
         "properties": {
           "category": {
-            "type": "string"
+            "type": "string",
+            "description": "Skill group name (e.g. Backend, Languages)."
           },
           "items": {
             "minItems": 1,
             "type": "array",
             "items": {
               "type": "string"
-            }
+            },
+            "description": "Skills belonging to this category."
           }
         },
         "required": ["category", "items"],
@@ -131,27 +152,34 @@
             "type": "string"
           },
           "startDate": {
-            "type": "string"
+            "type": "string",
+            "description": "Use \"Mon YYYY\" (e.g. \"Jan 2025\") or \"YYYY\"."
           },
           "endDate": {
+            "description": "Leave empty for an ongoing project.",
             "type": "string"
           },
           "projectUrl": {
+            "description": "General project page.",
             "type": "string"
           },
           "liveUrl": {
+            "description": "Live deployment URL.",
             "type": "string"
           },
           "repositoryUrl": {
+            "description": "Source code repository URL.",
             "type": "string"
           },
           "technologies": {
+            "description": "Technologies and tools used.",
             "type": "array",
             "items": {
               "type": "string"
             }
           },
           "highlights": {
+            "description": "Key features, contributions, or results.",
             "type": "array",
             "items": {
               "type": "string"
@@ -174,10 +202,12 @@
             "type": "string"
           },
           "date": {
-            "type": "string"
+            "type": "string",
+            "description": "Use \"Mon YYYY\" (e.g. \"Jan 2025\") or \"YYYY\"."
           },
           "url": {
-            "type": "string"
+            "type": "string",
+            "description": "A valid HTTP or HTTPS URL."
           },
           "description": {
             "type": "string"
@@ -202,12 +232,32 @@
             "type": "string"
           },
           "startDate": {
-            "type": "string"
+            "type": "string",
+            "description": "Use \"Mon YYYY\" (e.g. \"Jan 2025\") or \"YYYY\"."
           },
           "endDate": {
+            "description": "Leave empty if currently studying.",
             "type": "string"
           },
+          "topGrades": {
+            "description": "Notable grades or GPA.",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "label": {
+                  "type": "string"
+                },
+                "grade": {
+                  "type": "string"
+                }
+              },
+              "required": ["label", "grade"],
+              "additionalProperties": false
+            }
+          },
           "honors": {
+            "description": "Academic honors, awards, or distinctions.",
             "type": "array",
             "items": {
               "type": "string"
@@ -230,10 +280,12 @@
             "type": "string"
           },
           "date": {
-            "type": "string"
+            "type": "string",
+            "description": "Use \"Mon YYYY\" (e.g. \"Jan 2025\") or \"YYYY\"."
           },
           "url": {
-            "type": "string"
+            "type": "string",
+            "description": "A valid HTTP or HTTPS URL."
           }
         },
         "required": ["name", "issuer", "date"],
@@ -251,11 +303,11 @@
           "proficiency": {
             "type": "string",
             "enum": [
-              "Native",
-              "Bilingual",
-              "Professional Working",
+              "Elementary",
               "Limited Working",
-              "Basic"
+              "Professional Working",
+              "Full Professional",
+              "Native or Bilingual"
             ]
           }
         },

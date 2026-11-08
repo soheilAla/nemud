@@ -133,9 +133,19 @@
   "education": [
     {
       "institution": "Iran University of Science and Technology",
-      "degree": "B.Sc.",
+      "degree": "Bachelor",
       "field": "Computer Science",
       "startDate": "2025",
+      "topGrades": [
+        {
+          "label": "Advanced Programming",
+          "grade": "20/20"
+        },
+        {
+          "label": "Data Structures & Algorithms",
+          "grade": "19.5/20"
+        }
+      ],
       "honors": [
         "Outstanding Performance in Computer Science Coursework (2026)"
       ]
@@ -164,7 +174,7 @@
   "languages": [
     {
       "name": "Persian",
-      "proficiency": "Native"
+      "proficiency": "Native or Bilingual"
     },
     {
       "name": "English",

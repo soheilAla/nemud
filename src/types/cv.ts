@@ -7,42 +7,51 @@ export const nonEmptyString = z
     message: "String must not be empty or whitespace only",
   });
 
-export const httpUrlSchema = z.string().refine(
-  (val) => {
-    try {
-      const url = new URL(val);
-      return url.protocol === "http:" || url.protocol === "https:";
-    } catch {
-      return false;
-    }
-  },
-  { message: "Must be a valid http or https URL" },
-);
+export const httpUrlSchema = z
+  .string()
+  .refine(
+    (val) => {
+      try {
+        const url = new URL(val);
+        return url.protocol === "http:" || url.protocol === "https:";
+      } catch {
+        return false;
+      }
+    },
+    { message: "Must be a valid HTTP or HTTPS URL" },
+  )
+  .describe("A valid HTTP or HTTPS URL.");
 
-export const portraitSchema = z.string().refine(
-  (val) => {
-    if (val.startsWith("/")) return true;
-    try {
-      const url = new URL(val);
-      return url.protocol === "http:" || url.protocol === "https:";
-    } catch {
-      return false;
-    }
-  },
-  {
-    message:
-      'Portrait must be a root-relative path starting with "/" or a valid http(s) URL',
-  },
-);
+export const portraitSchema = z
+  .string()
+  .refine(
+    (val) => {
+      if (val.startsWith("/")) return true;
+      try {
+        const url = new URL(val);
+        return url.protocol === "http:" || url.protocol === "https:";
+      } catch {
+        return false;
+      }
+    },
+    {
+      message:
+        'Portrait must be a root-relative path starting with "/" or a valid HTTP(S) URL',
+    },
+  )
+  .describe('Image URL or root-relative path (e.g. "/portrait.jpg").');
 
-export const dateString = z.string().superRefine((val, ctx) => {
-  if (parseCvDate(val) === undefined) {
-    ctx.addIssue({
-      code: "custom",
-      message: `"${val}" is not a valid date; use "Mon YYYY" (for example "Jan 2025") or "YYYY"`,
-    });
-  }
-});
+export const dateString = z
+  .string()
+  .superRefine((val, ctx) => {
+    if (parseCvDate(val) === undefined) {
+      ctx.addIssue({
+        code: "custom",
+        message: `"${val}" is not a valid date; use "Mon YYYY" (for example "Jan 2025") or "YYYY"`,
+      });
+    }
+  })
+  .describe('Use "Mon YYYY" (e.g. "Jan 2025") or "YYYY".');
 
 export const LINK_PLATFORMS = [
   "github",
@@ -64,39 +73,53 @@ export const socialLinkSchema = z
     label: z.string().optional(),
   })
   .strict();
+
 export type SocialLink = z.infer<typeof socialLinkSchema>;
 
 export const basicsSchema = z
   .object({
     name: nonEmptyString,
-    headline: nonEmptyString,
+    headline: nonEmptyString.describe("Professional title or target role."),
     email: z.email(),
-    phone: nonEmptyString.optional(),
-    location: nonEmptyString,
-    timeZone: z.string().optional(),
+    phone: nonEmptyString,
+    location: nonEmptyString.describe(
+      "City and country, or preferred location format.",
+    ),
+    timeZone: nonEmptyString.describe("Time zone (e.g. UTC+3:30)."),
     website: httpUrlSchema.optional(),
     portrait: portraitSchema.optional(),
     socials: z.array(socialLinkSchema).optional(),
   })
   .strict();
+
 export type Basics = z.infer<typeof basicsSchema>;
 
 export const WORK_MODES = ["On-site", "Hybrid", "Remote"] as const;
+
 export const workModeSchema = z.enum(WORK_MODES, {
   message: `expected one of ${WORK_MODES.join(" | ")}`,
 });
+
 export type WorkMode = z.infer<typeof workModeSchema>;
 
 export const experienceItemSchema = z
   .object({
     company: nonEmptyString,
-    title: nonEmptyString,
+    title: nonEmptyString.describe("Job title or position."),
     startDate: dateString,
-    endDate: dateString.optional(),
+    endDate: dateString
+      .optional()
+      .describe("Leave empty for a current position."),
     location: z.string().optional(),
     workMode: workModeSchema.optional(),
-    description: z.string().optional(),
-    highlights: z.array(nonEmptyString).optional(),
+    description: z
+      .string()
+      .optional()
+      .describe("Brief overview of your responsibilities."),
+    highlights: z
+      .array(nonEmptyString)
+      .optional()
+      .describe("Key achievements and measurable results."),
   })
   .strict()
   .superRefine((item, ctx) => {
@@ -112,16 +135,21 @@ export const experienceItemSchema = z
       }
     }
   });
+
 export type ExperienceItem = z.infer<typeof experienceItemSchema>;
 
 export const skillCategorySchema = z
   .object({
-    category: nonEmptyString,
+    category: nonEmptyString.describe(
+      "Skill group name (e.g. Backend, Languages).",
+    ),
     items: z
       .array(nonEmptyString)
-      .nonempty("Skill category must contain at least one item"),
+      .nonempty("Skill category must contain at least one item")
+      .describe("Skills belonging to this category."),
   })
   .strict();
+
 export type SkillCategory = z.infer<typeof skillCategorySchema>;
 
 export const projectItemSchema = z
@@ -129,12 +157,22 @@ export const projectItemSchema = z
     title: nonEmptyString,
     description: nonEmptyString,
     startDate: dateString,
-    endDate: dateString.optional(),
-    projectUrl: httpUrlSchema.optional(),
-    liveUrl: httpUrlSchema.optional(),
-    repositoryUrl: httpUrlSchema.optional(),
-    technologies: z.array(nonEmptyString).optional(),
-    highlights: z.array(nonEmptyString).optional(),
+    endDate: dateString
+      .optional()
+      .describe("Leave empty for an ongoing project."),
+    projectUrl: httpUrlSchema.optional().describe("General project page."),
+    liveUrl: httpUrlSchema.optional().describe("Live deployment URL."),
+    repositoryUrl: httpUrlSchema
+      .optional()
+      .describe("Source code repository URL."),
+    technologies: z
+      .array(nonEmptyString)
+      .optional()
+      .describe("Technologies and tools used."),
+    highlights: z
+      .array(nonEmptyString)
+      .optional()
+      .describe("Key features, contributions, or results."),
   })
   .strict()
   .superRefine((item, ctx) => {
@@ -150,6 +188,7 @@ export const projectItemSchema = z
       }
     }
   });
+
 export type ProjectItem = z.infer<typeof projectItemSchema>;
 
 export const publicationItemSchema = z
@@ -161,6 +200,7 @@ export const publicationItemSchema = z
     description: z.string().optional(),
   })
   .strict();
+
 export type PublicationItem = z.infer<typeof publicationItemSchema>;
 
 export const educationItemSchema = z
@@ -169,8 +209,24 @@ export const educationItemSchema = z
     degree: nonEmptyString,
     field: z.string().optional(),
     startDate: dateString,
-    endDate: dateString.optional(),
-    honors: z.array(nonEmptyString).optional(),
+    endDate: dateString
+      .optional()
+      .describe("Leave empty if currently studying."),
+    topGrades: z
+      .array(
+        z
+          .object({
+            label: nonEmptyString,
+            grade: nonEmptyString,
+          })
+          .strict(),
+      )
+      .optional()
+      .describe("Notable grades or GPA."),
+    honors: z
+      .array(nonEmptyString)
+      .optional()
+      .describe("Academic honors, awards, or distinctions."),
   })
   .strict()
   .superRefine((item, ctx) => {
@@ -186,6 +242,7 @@ export const educationItemSchema = z
       }
     }
   });
+
 export type EducationItem = z.infer<typeof educationItemSchema>;
 
 export const certificationItemSchema = z
@@ -196,14 +253,15 @@ export const certificationItemSchema = z
     url: httpUrlSchema.optional(),
   })
   .strict();
+
 export type CertificationItem = z.infer<typeof certificationItemSchema>;
 
 export const LANGUAGE_PROFICIENCIES = [
-  "Native",
-  "Bilingual",
-  "Professional Working",
+  "Elementary",
   "Limited Working",
-  "Basic",
+  "Professional Working",
+  "Full Professional",
+  "Native or Bilingual",
 ] as const;
 
 export const languageProficiencySchema = z.enum(LANGUAGE_PROFICIENCIES, {
@@ -216,13 +274,14 @@ export const languageItemSchema = z
     proficiency: languageProficiencySchema,
   })
   .strict();
+
 export type LanguageItem = z.infer<typeof languageItemSchema>;
 
 export const cvSchema = z
   .object({
     $schema: z.string().optional(),
     basics: basicsSchema,
-    summary: z.string().optional(),
+    summary: z.string().optional().describe("A concise professional summary."),
     experience: z.array(experienceItemSchema).optional(),
     skills: z.array(skillCategorySchema).optional(),
     projects: z.array(projectItemSchema).optional(),
@@ -232,4 +291,5 @@ export const cvSchema = z
     languages: z.array(languageItemSchema).optional(),
   })
   .strict();
+
 export type CV = z.infer<typeof cvSchema>;

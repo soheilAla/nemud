@@ -5,9 +5,11 @@ import {
   type BodySectionKey,
   type ResolvedSiteConfig,
   type SiteConfig,
+  TOGGLEABLE_SECTIONS,
+  type ToggleableSectionKey,
 } from "../types/site.ts";
 
-export { ALL_BODY_SECTIONS };
+export { ALL_BODY_SECTIONS, TOGGLEABLE_SECTIONS };
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null && !Array.isArray(value);
@@ -70,9 +72,9 @@ export function validateSiteConfig(
       throw new Error(`${source}: "sectionVisibility" must be an object.`);
     }
     for (const [key, val] of Object.entries(raw.sectionVisibility)) {
-      if (!ALL_BODY_SECTIONS.includes(key as BodySectionKey)) {
+      if (!TOGGLEABLE_SECTIONS.includes(key as ToggleableSectionKey)) {
         throw new Error(
-          `${source}: "sectionVisibility" contains invalid section "${key}". Only predefined sections are allowed: ${ALL_BODY_SECTIONS.join(", ")}.`,
+          `${source}: "sectionVisibility" contains invalid section "${key}". Only toggleable sections are allowed: ${TOGGLEABLE_SECTIONS.join(", ")}.`,
         );
       }
       if (typeof val !== "boolean") {
@@ -82,7 +84,7 @@ export function validateSiteConfig(
       }
     }
     config.sectionVisibility = raw.sectionVisibility as Partial<
-      Record<BodySectionKey, boolean>
+      Record<ToggleableSectionKey, boolean>
     >;
   }
 
@@ -113,7 +115,12 @@ export function resolveSiteConfig(
 
   const sectionVisibility = {} as Record<BodySectionKey, boolean>;
   for (const key of ALL_BODY_SECTIONS) {
-    sectionVisibility[key] = safeConfig.sectionVisibility?.[key] !== false;
+    if (key === "skills") {
+      sectionVisibility[key] = true;
+    } else {
+      sectionVisibility[key] =
+        safeConfig.sectionVisibility?.[key as ToggleableSectionKey] !== false;
+    }
   }
 
   const showPortrait = safeConfig.showPortrait !== false;

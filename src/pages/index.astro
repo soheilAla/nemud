@@ -18,9 +18,7 @@ const config = resolveSiteConfig(loadSiteConfig());
 function isSectionNonEmpty(key: BodySectionKey): boolean {
   const data = cvData[key];
   if (!data) return false;
-  if (Array.isArray(data)) return data.length > 0;
-  if (typeof data === "string") return data.trim().length > 0;
-  return true;
+  return Array.isArray(data) ? data.length > 0 : true;
 }
 
 const activeSections = config.sectionOrder.filter(
@@ -32,11 +30,10 @@ const pageTitle = `${cvData.basics.name} - ${cvData.basics.headline}`;
 
 <CVLayout title={pageTitle} description={cvData.summary} config={config}>
   <Header basics={cvData.basics} showPortrait={config.showPortrait} />
+  {cvData.summary && <Summary summary={cvData.summary} />}
 
   {activeSections.map((sectionKey) => {
     switch (sectionKey) {
-      case "summary":
-        return cvData.summary ? <Summary summary={cvData.summary} /> : null;
       case "experience":
         return cvData.experience ? (
           <Experience items={cvData.experience} />

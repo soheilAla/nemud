@@ -40,7 +40,7 @@ pnpm install
 pnpm dev
 ```
 
-Open the URL displayed in your terminal in a browser to see your resume preview (probably [http://localhost:4321/](http://localhost:4321/)).
+Open the URL displayed in your terminal in a browser to see your resume preview (probably [http://localhost:4321](http://localhost:4321)).
 
 ### Editing Resume Information
 

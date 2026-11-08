@@ -1,5 +1,4 @@
 export const ALL_BODY_SECTIONS = [
-  "summary",
   "experience",
   "skills",
   "projects",
@@ -11,10 +10,21 @@ export const ALL_BODY_SECTIONS = [
 
 export type BodySectionKey = (typeof ALL_BODY_SECTIONS)[number];
 
+export const TOGGLEABLE_SECTIONS = [
+  "experience",
+  "projects",
+  "education",
+  "certifications",
+  "publications",
+  "languages",
+] as const;
+
+export type ToggleableSectionKey = (typeof TOGGLEABLE_SECTIONS)[number];
+
 export interface SiteConfig {
   showPortrait?: boolean;
   sectionOrder?: BodySectionKey[];
-  sectionVisibility?: Partial<Record<BodySectionKey, boolean>>;
+  sectionVisibility?: Partial<Record<ToggleableSectionKey, boolean>>;
 }
 
 export interface ResolvedSiteConfig {

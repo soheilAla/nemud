@@ -42,13 +42,11 @@ test("resolveSiteConfig: respects explicit sectionVisibility: false and showPort
     showPortrait: false,
     sectionVisibility: {
       certifications: false,
-      summary: false,
     },
   });
 
   assert.equal(resolved.showPortrait, false);
   assert.equal(resolved.sectionVisibility.certifications, false);
-  assert.equal(resolved.sectionVisibility.summary, false);
   assert.equal(resolved.sectionVisibility.experience, true);
 });
 
@@ -69,6 +67,26 @@ test("validateSiteConfig: strictly rejects custom sections and unknown keys", ()
   assert.throws(
     () => validateSiteConfig({ sectionVisibility: { hobbies: true } }),
     /contains invalid section "hobbies"/,
+  );
+
+  // Reject summary in sectionVisibility and sectionOrder
+  assert.throws(
+    () => validateSiteConfig({ sectionVisibility: { summary: true } }),
+    /contains invalid section "summary"/,
+  );
+  assert.throws(
+    () => validateSiteConfig({ sectionOrder: ["summary"] }),
+    /contains invalid section "summary"/,
+  );
+
+  // Reject skills in sectionVisibility
+  assert.throws(
+    () => validateSiteConfig({ sectionVisibility: { skills: false } }),
+    /contains invalid section "skills"/,
+  );
+  assert.throws(
+    () => validateSiteConfig({ sectionVisibility: { skills: true } }),
+    /contains invalid section "skills"/,
   );
 
   // Reject wrong types
@@ -102,6 +120,7 @@ test("empty section detection: empty arrays or whitespace strings are not render
       email: "test@example.com",
       phone: "+1234567890",
       location: "Remote",
+      timeZone: "UTC+00:00",
     },
     summary: "   ",
     experience: [],
@@ -118,12 +137,9 @@ test("empty section detection: empty arrays or whitespace strings are not render
   function isSectionNonEmpty(key: BodySectionKey, cv: CV): boolean {
     const data = cv[key];
     if (!data) return false;
-    if (Array.isArray(data)) return data.length > 0;
-    if (typeof data === "string") return data.trim().length > 0;
-    return true;
+    return Array.isArray(data) ? data.length > 0 : true;
   }
 
-  assert.equal(isSectionNonEmpty("summary", sampleCV), false);
   assert.equal(isSectionNonEmpty("experience", sampleCV), false);
   assert.equal(isSectionNonEmpty("publications", sampleCV), false);
   assert.equal(isSectionNonEmpty("projects", sampleCV), true);

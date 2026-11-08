@@ -34,6 +34,16 @@ if (!items || items.length === 0) {
           </span>
         </div>
 
+        {item.topGrades && item.topGrades.length > 0 && (
+          <ul>
+            {item.topGrades.map((grade) => (
+              <li>
+                <FormattedText text={`${grade.label}: **${grade.grade}**`} />
+              </li>
+            ))}
+          </ul>
+        )}
+
         {item.honors && item.honors.length > 0 && (
           <ul>
             {item.honors.map((honor) => (
