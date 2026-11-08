@@ -75,16 +75,16 @@
 
   "skills": [
     {
-      "category": "Languages",
+      "category": "Programming Languages",
       "items": ["Python", "SQL"]
     },
     {
       "category": "Backend Development",
-      "items": ["FastAPI", "Pydantic", "REST API Design"]
+      "items": ["FastAPI", "Pydantic", "REST API Design", "Alembic"]
     },
     {
       "category": "Databases & ORMs",
-      "items": ["PostgreSQL", "MySQL", "Redis", "SQLAlchemy", "Alembic"]
+      "items": ["PostgreSQL", "MySQL", "Redis", "SQLAlchemy"]
     },
     {
       "category": "Tools & Infrastructure",

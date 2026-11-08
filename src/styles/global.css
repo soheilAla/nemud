@@ -2,7 +2,7 @@
   --font-sans:
     "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 
-  /* Color Palette: High-Contrast Modern Slate */
+  /* Color Palette */
   --color-bg: #ffffff;
   --color-fg: #0f172a;
   --color-muted: #334155;
@@ -11,7 +11,7 @@
   --color-surface: #f1f5f9;
   --color-accent: #2563eb;
 
-  /* Spacing Scale (Principled ATS-standard rhythm) */
+  /* Spacing Scale */
   --space-unit: 1rem;
   --section-gap: 1.5rem;
   --item-gap: 1.125rem;
@@ -65,7 +65,7 @@ body {
   border-radius: 2px;
 }
 
-/* Single-column main layout container (Responsive on Web) */
+/* Single-column main layout container */
 .cv-container {
   width: 100%;
   max-width: var(--content-max-width);
@@ -274,7 +274,7 @@ li {
 
   /* Prevent page breaks inside items and after headings */
   .cv-item,
-  .cv-skill-category {
+  .cv-skill-row {
     break-inside: avoid;
     page-break-inside: avoid;
   }

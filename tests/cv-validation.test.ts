@@ -221,6 +221,42 @@ test("3. Missing required field and wrong type are rejected; invalid proficiency
     /expected one of On-site \| Hybrid \| Remote/,
   );
 
+  // Phone number validation
+  const validPhones = [
+    "+989120000000",
+    "+1 (555) 123-4567",
+    "+44 20 7946 0958",
+    "09120000000",
+    "+49.30.123456",
+  ];
+  for (const phone of validPhones) {
+    assert.doesNotThrow(() =>
+      parseCv({
+        ...minimalValidCV,
+        basics: { ...minimalValidCV.basics, phone },
+      }),
+    );
+  }
+
+  // Phone number validation: invalid numbers fail
+  const invalidPhones = [
+    "123",
+    "12345678901234567",
+    "not-a-number",
+    "+1+2+34567",
+    "N/A",
+  ];
+  for (const phone of invalidPhones) {
+    assert.throws(
+      () =>
+        parseCv({
+          ...minimalValidCV,
+          basics: { ...minimalValidCV.basics, phone },
+        }),
+      /basics\.phone/,
+    );
+  }
+
   // gitlab and whatsapp are supported platforms
   assert.doesNotThrow(() =>
     parseCv({

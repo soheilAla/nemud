@@ -76,12 +76,27 @@ export const socialLinkSchema = z
 
 export type SocialLink = z.infer<typeof socialLinkSchema>;
 
+export const phoneSchema = z
+  .string()
+  .refine(
+    (val) => {
+      if (!/^\+?[\d\s\-().]+$/.test(val)) return false;
+      const digits = val.replace(/\D/g, "");
+      return digits.length >= 7 && digits.length <= 15;
+    },
+    {
+      message:
+        "Must be a valid phone number (7 to 15 digits, optional leading '+' and separators)",
+    },
+  )
+  .describe("Phone number (e.g. '+989120000000' or '+1 (555) 123-4567').");
+
 export const basicsSchema = z
   .object({
     name: nonEmptyString,
     headline: nonEmptyString.describe("Professional title or target role."),
     email: z.email(),
-    phone: nonEmptyString,
+    phone: phoneSchema,
     location: nonEmptyString.describe(
       "City and country, or preferred location format.",
     ),
