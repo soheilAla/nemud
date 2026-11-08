@@ -27,6 +27,7 @@ export function validateSiteConfig(
   }
 
   const allowedKeys = new Set([
+    "$schema",
     "showPortrait",
     "sectionOrder",
     "sectionVisibility",
@@ -40,6 +41,13 @@ export function validateSiteConfig(
   }
 
   const config: SiteConfig = {};
+
+  if (raw.$schema !== undefined) {
+    if (typeof raw.$schema !== "string") {
+      throw new Error(`${source}: "$schema" must be a string.`);
+    }
+    config.$schema = raw.$schema;
+  }
 
   if (raw.showPortrait !== undefined) {
     if (typeof raw.showPortrait !== "boolean") {

@@ -94,6 +94,13 @@ test("validateSiteConfig: strictly rejects custom sections and unknown keys", ()
     () => validateSiteConfig({ showPortrait: "yes" }),
     /"showPortrait" must be a boolean/,
   );
+  assert.throws(
+    () => validateSiteConfig({ $schema: 123 }),
+    /"\$schema" must be a string/,
+  );
+  assert.doesNotThrow(() =>
+    validateSiteConfig({ $schema: "./site.schema.json" }),
+  );
 });
 
 test("loadSiteConfig: safely handles missing optional file and invalid JSON", () => {

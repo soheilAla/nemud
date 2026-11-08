@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "showPortrait": {
+      "description": "Toggle portrait display in the header.",
+      "type": "boolean"
+    },
+    "sectionOrder": {
+      "description": "Display order of body sections.",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "experience",
+          "skills",
+          "projects",
+          "education",
+          "certifications",
+          "publications",
+          "languages"
+        ]
+      }
+    },
+    "sectionVisibility": {
+      "description": "Toggle visibility for optional sections.",
+      "type": "object",
+      "properties": {
+        "experience": {
+          "type": "boolean"
+        },
+        "projects": {
+          "type": "boolean"
+        },
+        "education": {
+          "type": "boolean"
+        },
+        "certifications": {
+          "type": "boolean"
+        },
+        "publications": {
+          "type": "boolean"
+        },
+        "languages": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

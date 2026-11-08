@@ -32,6 +32,11 @@ jobs:
       - name: Lint & format check
         run: pnpm lint
 
+      - name: Verify schemas are up to date
+        run: |
+          pnpm schema
+          git diff --exit-code config/cv.schema.json config/site.schema.json
+
       - name: Astro type check
         run: pnpm check
 

@@ -8,7 +8,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",
-    "schema": "node --no-warnings --experimental-strip-types scripts/generate-schema.ts",
+    "schema": "node --no-warnings --experimental-strip-types scripts/generate-schema.ts && biome format --write config/cv.schema.json config/site.schema.json",
     "test": "node --no-warnings --experimental-strip-types --test tests/**/*.test.ts",
     "lint": "biome check .",
     "lint:fix": "biome check --write .",

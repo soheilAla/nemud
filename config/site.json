@@ -1,4 +1,5 @@
 {
+  "$schema": "./site.schema.json",
   "sectionOrder": [
     "experience",
     "skills",

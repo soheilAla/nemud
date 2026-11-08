@@ -25,7 +25,7 @@ const activeSections = config.sectionOrder.filter(
   (key) => config.sectionVisibility[key] && isSectionNonEmpty(key),
 );
 
-const pageTitle = `${cvData.basics.name} - ${cvData.basics.headline}`;
+const pageTitle = cvData.basics.name;
 ---
 
 <CVLayout title={pageTitle} description={cvData.summary} config={config}>
