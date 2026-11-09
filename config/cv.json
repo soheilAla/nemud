@@ -33,7 +33,7 @@
     ]
   },
 
-  "summary": "Junior **Python Backend Developer** focused on building secure and maintainable backend services using **FastAPI**. Experienced in developing REST APIs, database-driven applications, and applying software engineering principles to build reliable systems.",
+  "summary": "Junior **Python Backend Developer** building fast, secure services with **FastAPI**. Experienced in REST APIs, database queries, and clean backend systems.",
 
   "experience": [
     {
@@ -42,11 +42,11 @@
       "startDate": "Jan 2025",
       "location": "Tehran, Iran",
       "workMode": "Hybrid",
-      "description": "Order-management team of 6 engineers; services handle about **40k requests per minute**.",
+      "description": "Six-engineer team handling about **40k requests per minute**.",
       "highlights": [
-        "Reduced p95 latency of the vendor menu endpoint from **480 ms to 190 ms** by adding composite PostgreSQL indexes and replacing N+1 SQLAlchemy queries with joined loads.",
-        "Eliminated **95% of malformed-payload errors** reaching the database layer by adding Pydantic validation and uniform error responses to 14 endpoints.",
-        "Shortened release time from **40 to 12 minutes** by automating tests and Docker image builds in a GitHub Actions CI/CD pipeline."
+        "Cut menu endpoint latency from **480 ms to 190 ms** with composite indexes and joined SQL queries.",
+        "Stopped **95% of bad payloads** by adding Pydantic validation to 14 endpoints.",
+        "Cut deploy time from **40 to 12 minutes** with automated CI/CD pipeline tests."
       ]
     },
     {
@@ -57,8 +57,8 @@
       "location": "Tehran, Iran",
       "workMode": "On-site",
       "highlights": [
-        "Built 8 REST endpoints with FastAPI and PostgreSQL for the internal campaign dashboard, used daily by **30 ad-operations staff**.",
-        "Cut weekly campaign-report preparation from **2 hours to 5 minutes** by replacing a manual spreadsheet export with a scheduled SQL aggregation job."
+        "Built 8 REST endpoints with FastAPI and PostgreSQL for an internal dashboard serving **30 staff daily**.",
+        "Cut report prep time from **2 hours to 5 minutes** using scheduled SQL jobs."
       ]
     },
     {
@@ -67,8 +67,8 @@
       "startDate": "Jan 2024",
       "endDate": "Jun 2024",
       "highlights": [
-        "Delivered an appointment-booking API for a dental clinic in **6 weeks**, replacing phone scheduling for about **200 monthly appointments**.",
-        "Deployed the service with **Docker** on a Linux server and handled schema changes with **Alembic** migrations."
+        "Built a clinic booking API in **6 weeks**, replacing phone calls for **200 monthly visits**.",
+        "Ran the app with **Docker** on Linux and managed schema migrations with **Alembic**."
       ]
     }
   ],
@@ -95,7 +95,7 @@
   "projects": [
     {
       "title": "Zero Drop",
-      "description": "Open-source paste service where text is encrypted in the browser before upload.",
+      "description": "Open-source paste tool that encrypts text in the browser before upload.",
       "startDate": "Sep 2026",
       "endDate": "Oct 2026",
       "repositoryUrl": "https://github.com/soheilAla/zero-drop",
@@ -112,20 +112,20 @@
         "Tailwind CSS"
       ],
       "highlights": [
-        "Encrypted pastes in the browser with **AES-256-GCM**, so plaintext and decryption keys never appear in server requests.",
+        "Encrypted pastes with client-side **AES-256-GCM**, keeping keys and plaintext off the server.",
         "Added password-based encryption with **PBKDF2** key derivation.",
-        "Hardened the API with **rate limiting** and security headers."
+        "Secured the API with **rate limiting** and security headers."
       ]
     },
     {
       "title": "Secure Lens",
-      "description": "Command-line scanner that audits project security configuration and ranks findings by risk.",
+      "description": "Command-line tool that audits code security and ranks findings by risk.",
       "startDate": "Sep 2026",
       "repositoryUrl": "https://github.com/soheilAla/secure-lens",
       "technologies": ["Python", "Pydantic", "Jev SDK", "GitHub Actions"],
       "highlights": [
-        "Built modular static checks that detect **exposed secrets**, insecure environment settings, Dockerfile risks, and Git configuration issues.",
-        "Integrated the **Jev decision model** to assess exploitability and adjust finding severity beyond rule-based detection."
+        "Built checks to detect **exposed secrets**, insecure configs, Dockerfile risks, and Git issues.",
+        "Used the **Jev model** to score exploit risk beyond basic rule matching."
       ]
     }
   ],
@@ -167,7 +167,7 @@
       "publisher": "Tech Journal of Software Engineering",
       "date": "May 2024",
       "url": "https://example.com/publications/fastapi-design-patterns",
-      "description": "Explored clean architecture, connection pooling, and async database session management patterns in production Python services."
+      "description": "Explored clean architecture, connection pooling, and async database sessions in Python."
     }
   ],
 

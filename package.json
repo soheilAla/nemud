@@ -7,6 +7,7 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
+    "export": "node --no-warnings --experimental-strip-types scripts/export-pdf.ts",
     "check": "astro check",
     "schema": "node --no-warnings --experimental-strip-types scripts/generate-schema.ts && biome format --write config/cv.schema.json config/site.schema.json",
     "test": "node --no-warnings --experimental-strip-types --test tests/**/*.test.ts",

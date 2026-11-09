@@ -68,12 +68,22 @@ pnpm dev
 
 ### دریافت خروجی PDF
 
+**روش خودکار (نیاز به نصب داشتن Chrome):**
+
+```bash
+pnpm export
 ```
+
+این دستور پروژه رو بیلد می‌کنه و رزومه رو با نام شما به صورت PDF توی ریشه پروژه خروجی می‌ده.
+
+**روش دستی:**
+
+```bash
 pnpm build
 pnpm preview
 ```
 
-توی مرورگر رزومه رو به عنوان PDF پرینت کن (`CTRL + P` و انتخاب Save to PDF به عنوان Destination).
+توی مرورگر دلخواهت رزومه رو به عنوان PDF پرینت کن (`CTRL + P` و انتخاب Save to PDF به عنوان Destination).
 
 حواست باشه گزینه `Print headers and footers` غیرفعال باشه که اطلاعات اضافی مرورگر توی خروجی نمایش داده نشه.
 
@@ -81,7 +91,20 @@ pnpm preview
 
 ‏ATS (Applicant Tracking System) نرم‌افزاریه که شرکت‌ها برای مدیریت درخواست‌های استخدام ازش استفاده می‌کنن. نمود با هدف ساخت رزومه‌های قابل‌پردازش برای این سیستم‌ها طراحی شده.
 
-اما ATSها از روش‌های مختلفی برای بررسی رزومه‌ها استفاده می‌کنن؛ پس هیچ قالبی نمی‌تونه سازگاری 100 درصدی با همه اون‌ها رو تضمین کنه.
+اما ATSها قوانین و روش‌های مختلفی برای بررسی رزومه‌ها دارن؛ پس هیچ قالبی نمی‌تونه سازگاری 100% با همه اون‌ها رو تضمین کنه. علاوه بر این، کیفیت محتوای رزومه هم تاثیر زیادی روی کسب امتیاز بالا از سیستم‌های ATS می‌ذاره.
+
+یه تعداد ارزیابی توسط ابزارهای ATS testing:
+- [Alder CV ATS Checker](https://aldercv.com/ats-checker)
+
+  ![Alder CV](assets/alder-cv.png)
+
+- [Revquix ATS Resume Checker](https://www.revquix.com/tools/ats-resume-checker)
+
+  ![Revquix](assets/revquix.png)
+
+- [Small Study Tools CV Review](https://smallstudytools.com/cv-review/)
+
+  ![Small Study Tools](assets/small-study-tools.png)
 
 ## 📄 لایسنس
 

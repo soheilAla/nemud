@@ -68,6 +68,16 @@ To **bold** part of your text, wrap it in double asterisks (`**`):
 
 ### Exporting to PDF
 
+**Automated export (requires Chrome):**
+
+```bash
+pnpm export
+```
+
+This builds the project and exports a PDF named after you in in the project root directory.
+
+**Manual export:**
+
 ```bash
 pnpm build
 pnpm preview
@@ -81,7 +91,20 @@ Make sure `Print headers and footers` is disabled so the browser does not add ex
 
 ATS (Applicant Tracking System) is software companies use to manage job applications. Nemud is designed to produce resumes that can be processed by these systems.
 
-However, ATS platforms use different methods to process resumes, so no template can guarantee 100% compatibility with all of them.
+However, ATS platforms use different rules and methods to process resumes, so no template can guarantee 100% compatibility with all of them. Additionally, the quality of your resume content plays a significant role in achieving a high score in ATS evaluations.
+
+Some validation results from ATS testing tools:
+- [Alder CV ATS Checker](https://aldercv.com/ats-checker)
+
+  ![Alder CV](assets/alder-cv.png)
+
+- [Revquix ATS Resume Checker](https://www.revquix.com/tools/ats-resume-checker)
+
+  ![Revquix](assets/revquix.png)
+
+- [Small Study Tools CV Review](https://smallstudytools.com/cv-review/)
+
+  ![Small Study Tools](assets/small-study-tools.png)
 
 ## 📄 License
 
