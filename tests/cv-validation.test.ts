@@ -151,6 +151,19 @@ test("1. A valid minimal CV passes; a full valid CV passes with zero warnings", 
   };
   assert.throws(() => parseCv(noTimeZoneCV), /basics\.timeZone/);
 
+  // Education field is mandatory: throws when omitted
+  const noEducationFieldCV = {
+    ...minimalValidCV,
+    education: [
+      {
+        institution: "State University",
+        degree: "B.S.",
+        startDate: "2016",
+      },
+    ],
+  };
+  assert.throws(() => parseCv(noEducationFieldCV), /education\[0\]\.field/);
+
   const fullResult = parseCv(fullValidCV);
   assert.equal(fullResult.cv.basics.name, "Jordan Lee");
   assert.equal(fullResult.warnings.length, 0);

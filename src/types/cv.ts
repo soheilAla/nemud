@@ -222,7 +222,7 @@ export const educationItemSchema = z
   .object({
     institution: nonEmptyString,
     degree: nonEmptyString,
-    field: z.string().optional(),
+    field: nonEmptyString,
     startDate: dateString,
     endDate: dateString
       .optional()

@@ -265,7 +265,7 @@
             }
           }
         },
-        "required": ["institution", "degree", "startDate"],
+        "required": ["institution", "degree", "field", "startDate"],
         "additionalProperties": false
       }
     },

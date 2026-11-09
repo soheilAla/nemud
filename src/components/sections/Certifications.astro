@@ -35,7 +35,26 @@ if (!items || items.length === 0) {
             <bdi>{item.date}</bdi>
           </span>
         </div>
+        {item.url && (
+          <a
+            href={item.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="cv-cert-url"
+          >
+            <bdi>{item.url.replace(/^https?:\/\//i, "")}</bdi>
+          </a>
+        )}
       </article>
     ))}
   </div>
 </Section>
+
+<style>
+.cv-cert-url {
+  font-size: var(--font-size-xs);
+  color: var(--color-muted);
+  word-break: break-all;
+  line-height: var(--line-height-tight);
+}
+</style>

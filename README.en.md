@@ -25,7 +25,7 @@ Unconventional section headings, inappropriate page layouts, and poorly thought-
 - A simple, single-column layout that improves readability and preserves information order during ATS parsing
 - Easy editing of all resume content through a JSON file
 - The ability to hide sections and change their display order
-- Validation of resume data against a schema
+- Validation of resume data with Zod against a schema
 
 ## 🚀 Getting Started
 
